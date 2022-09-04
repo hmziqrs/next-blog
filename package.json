@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "install": "^0.13.0",
+    "markdown-it": "^13.0.1",
+    "markdown-yaml-metadata-parser": "^3.0.0",
     "next": "12.2.5",
+    "npm": "^8.19.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.3"
   },
   "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
