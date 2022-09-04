@@ -1,22 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import Mit from 'markdown-it';
-import yaml from 'markdown-yaml-metadata-parser';
+import { PostFetchCallback, PostFetchState, PostHookArgs, PostMetaProps } from "./types";
 
-interface Args {
-    slug: string;
-}
 
-interface State {
-    loading: boolean;
-    error: boolean;
-    content?: any;
-    meta: {
-        title?: string;
-        description?: string;
-    }
-}
 
-type callbackType = Dispatch<SetStateAction<State>>
 
 const fetchPost = async (slug: string) => {
     const result = await fetch(`/posts/${slug}.md`);
@@ -44,7 +30,7 @@ const parse = (text: string) => {
 }
 
 
-const init = async (slug: string, callback: callbackType) => {
+const init = async (slug: string, callback: PostFetchCallback) => {
     try {
         const text = await fetchPost(slug)
         const payload =  parse(text)
@@ -63,8 +49,8 @@ const init = async (slug: string, callback: callbackType) => {
     }
 }
 
-const usePost = ({ slug }: Args) => {
-    const [state, setState] = useState<State>({
+const usePost = ({ slug }: PostHookArgs) => {
+    const [state, setState] = useState<PostFetchState>({
         loading: false,
         error: false,
         meta: {},
