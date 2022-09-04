@@ -5,7 +5,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   console.log('MY APP',pageProps);
   
   return <div>
-    <h1>WOW</h1>
     <Component {...pageProps} />
   </div>
 }

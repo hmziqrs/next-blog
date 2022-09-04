@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import usePost from './hook';
+import PostMeta from './Meta';
 
 const Post: NextPage = (props,a) => {
     const router = useRouter();
@@ -11,32 +12,12 @@ const Post: NextPage = (props,a) => {
 
     const hook = usePost({ slug: slug as string })
 
-    
-
   return (
     <>
-    <Head>
-      <meta property="og:type" content="article" />
-      {hook.meta.title && (
-        <>
-          <title>{hook.meta.title}</title>
-          <meta property="og:title" content={hook.meta.title} key="title" />
-          <meta name="twitter:title" content={hook.meta.title} />
-        </>
-      )}
-      {hook.meta.description && (
-        <>
-          <meta property="og:description" content={hook.meta.description} />
-          <meta name="twitter:description" content={hook.meta.description} />
-        </>
-      )}
-    </Head>
-    <div>
-        Post:
+    <PostMeta {...hook.meta} />
 <div>
   {hook.content && <ReactMarkdown>{hook.content}</ReactMarkdown>}
 </div>
-    </div>
     </>
   )
 }

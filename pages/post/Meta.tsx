@@ -21,3 +21,5 @@ const PostMeta = ({title, description}: PostMetaProps) => {
     </Head>
 
 }
+
+export default PostMeta
