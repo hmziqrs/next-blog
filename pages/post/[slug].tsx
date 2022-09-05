@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import usePost from './hook';
 import PostMeta from './Meta';
+import PageView from '../../components/Page';
 
 const Post: NextPage = (props,a) => {
     const router = useRouter();
@@ -13,12 +14,12 @@ const Post: NextPage = (props,a) => {
     const hook = usePost({ slug: slug as string })
 
   return (
-    <>
+    <PageView {...hook}>
     <PostMeta {...hook.meta} />
 <div>
   {hook.content && <ReactMarkdown>{hook.content}</ReactMarkdown>}
 </div>
-    </>
+    </PageView>
   )
 }
 
