@@ -1,8 +1,8 @@
 import Error from "../Error";
-import FullScreenLoader from "../FullScreenLoader";
+import FullScreenLoader from "@components/FullScreenLoader";
 import { PageProps } from "./types";
 
-const PageView = ({ loading, error, children } : PageProps): JSX.Element => {
+const PageView = ({ loading, error, children } : PageProps): React.ReactNode => {
     if (loading ) {
         return <FullScreenLoader />
     }
