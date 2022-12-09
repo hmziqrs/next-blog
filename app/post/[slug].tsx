@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import Head from 'next/head'
 import usePost from './hook';
 import PostMeta from './Meta';
-import PageView from '../../components/Page';
+import PageView from 'components/Page';
 
 const Post: NextPage = (props,a) => {
     const router = useRouter();
