@@ -3,11 +3,11 @@ import path from "path";
 import matter from "gray-matter";
 import pick from "lodash/pick";
 
-const BASE_DIR = "./data";
+const BLOGS_DIR = "./blogs";
 
 export async function fetchPosts() {
-  const dir = fs.readdirSync(BASE_DIR).filter((file) => file.endsWith(".md"));
-  const filesPaths = dir.map((v) => path.join(BASE_DIR, v));
+  const dir = fs.readdirSync(BLOGS_DIR).filter((file) => file.endsWith(".md"));
+  const filesPaths = dir.map((v) => path.join(BLOGS_DIR, v));
   const parsed = filesPaths
     .map((path) => fs.readFileSync(path, "utf-8"))
     .map((v) => matter(v))
@@ -25,7 +25,6 @@ export async function fetchPosts() {
       };
     })
     .sort((a, b) => a.stat.birthtimeMs - b.stat.birthtimeMs);
-  console.log(parsed);
 
   return parsed;
 }
