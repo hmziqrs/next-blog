@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { fetchPosts } from "./data";
 import styles from "./page.module.css";
+import { fetchPosts } from "api";
+import Link from "next/link";
 
 export default async function Home() {
   const data = await fetchPosts();
@@ -9,7 +10,9 @@ export default async function Home() {
     <div>
       <h1 className="text-red-500">This is blog </h1>
       {data.map((v) => (
-        <h1 key={v.data.title}>{v.data.title}</h1>
+        <Link key={v.path} href={`/post/${v.path}`}>
+          <h1>{v.data.title}</h1>
+        </Link>
       ))}
     </div>
   );
