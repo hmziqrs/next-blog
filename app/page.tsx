@@ -10,7 +10,7 @@ export default async function Home() {
     <div>
       <h1 className="text-red-500">This is blog </h1>
       {data.map((v) => (
-        <Link key={v.path} href={`/post/${v.path}`}>
+        <Link key={v.path} href={v.slug}>
           <h1>{v.data.title}</h1>
         </Link>
       ))}

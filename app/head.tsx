@@ -1,4 +1,4 @@
-export default function Head() {
+export default function CustomHead(props: any) {
   return (
     <>
       <title>Blog static</title>
