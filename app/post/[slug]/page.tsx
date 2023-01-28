@@ -8,10 +8,10 @@ export default async function Page({ params }: PostProps) {
   return (
     <>
       <HeadMeta {...data} />
-      <div className="flex-1 flex-col w-1">
+      <div>
         <h1>Hello this is post page</h1>
         <div className="w-auto  block">
-          <pre>{JSON.stringify(data)}</pre>
+          <pre>{data.content}</pre>
         </div>
       </div>
     </>

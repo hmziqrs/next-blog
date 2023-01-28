@@ -16,9 +16,8 @@ export default async function Home() {
         <Logo />
         <div className="my-4" />
         {data.map((v) => {
-          const title =
-            v.data.title +
-            "loren ipsum dolor sit amet consectetur adipisicing elit. ";
+          const title = v.data.title;
+
           return (
             <Link key={v.path} href={v.slug} className="my-8 block">
               <Image
@@ -27,9 +26,16 @@ export default async function Home() {
                 width="1900"
                 height="200"
               />
+              <div className="my-4" />
               <h1 className="text-2xl font-semibold">{title}</h1>
-              <p>By {v.data.author}</p>
-              <p>{dayjs(v.stat.birthtime).format("MMM D, YYYY")}</p>
+              <div className="my-2" />
+              <div className="flex flex-row flex-wrap">
+                <p>By {v.data.author}</p>
+                <div className="mx-2" />
+                <p>{dayjs(v.stat.birthtime).format("MMM D, YYYY")}</p>
+                <div className="mx-2" />
+                <p>{Math.ceil(v.readTime.minutes)} minutes read</p>
+              </div>
             </Link>
           );
         })}

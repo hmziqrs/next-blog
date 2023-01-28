@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import pick from "lodash/pick";
 import { Post } from "types";
+import readingTime from "reading-time";
 
 const POSTS_DIR = "./post";
 
@@ -25,12 +26,16 @@ function fetchPostByPath(path: string): Post {
   const v = matter(file);
   const stat = fs.statSync(path);
   const slug = path.replace(".md", "");
+  const readTime = readingTime(v.content, {
+    wordsPerMinute: 80,
+  });
   const data = {
     path,
     slug,
     stat,
-    content: v.content,
+    readTime,
     data: v.data,
+    content: v.content,
   } as Post;
   return data;
 }
