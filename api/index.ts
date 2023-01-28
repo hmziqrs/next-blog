@@ -11,7 +11,7 @@ export async function fetchPosts(): Promise<Post[]> {
   const filesPaths = dir.map((v) => path.join(POSTS_DIR, v));
   const parsed = filesPaths
     .map((v) => fetchPostByPath(v))
-    .sort((a, b) => a.stat.birthtimeMs - b.stat.birthtimeMs);
+    .sort((a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs);
   return parsed;
 }
 
@@ -29,7 +29,16 @@ function fetchPostByPath(path: string): Post {
     path,
     slug,
     stat,
-    ...pick(v, "content", "data"),
+    content: v.content,
+    data: {
+      created: parseBirthTime(stat.birthtimeMs.toString()),
+      ...v.data,
+    },
   } as Post;
   return data;
+}
+
+function parseBirthTime(date: string): Date {
+  const d = new Date(parseInt(date, 10));
+  return d;
 }

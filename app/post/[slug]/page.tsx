@@ -1,15 +1,19 @@
-import Image from "next/image";
-import Link from "next/link";
+import HeadMeta from "./HeadMeta";
 import { PostProps } from "./types";
 import { fetchPostBySlug } from "api";
 
-export default async function Home({ params }: PostProps) {
+export default async function Page({ params }: PostProps) {
   const data = await fetchPostBySlug(params.slug);
 
   return (
-    <div className="flex">
-      <h1>Hello this is post page</h1>
-      <pre className="w-auto  block">{JSON.stringify(data)}</pre>
-    </div>
+    <>
+      <HeadMeta {...data} />
+      <div className="flex-1 flex-col w-1">
+        <h1>Hello this is post page</h1>
+        <div className="w-auto  block">
+          <pre>{JSON.stringify(data)}</pre>
+        </div>
+      </div>
+    </>
   );
 }
