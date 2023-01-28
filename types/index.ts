@@ -11,6 +11,5 @@ export interface Post {
     category: string;
     image: string;
     tags: string[];
-    created: Date;
   };
 }

@@ -30,15 +30,7 @@ function fetchPostByPath(path: string): Post {
     slug,
     stat,
     content: v.content,
-    data: {
-      created: parseBirthTime(stat.birthtimeMs.toString()),
-      ...v.data,
-    },
+    data: v.data,
   } as Post;
   return data;
-}
-
-function parseBirthTime(date: string): Date {
-  const d = new Date(parseInt(date, 10));
-  return d;
 }
