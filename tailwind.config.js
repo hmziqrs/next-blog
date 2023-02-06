@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,7 +8,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-montserrat)", ...defaultTheme.fontFamily.mono],
+      },
+    },
   },
   plugins: [],
 };
