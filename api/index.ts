@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import pick from "lodash/pick";
 import { Post } from "types";
 import readingTime from "reading-time";
 
