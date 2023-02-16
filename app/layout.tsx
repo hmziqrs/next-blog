@@ -19,8 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={font.variable}>
-      <body className="bg-zinc-900 ">
-        <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0">
+      <body className="bg-zinc-900 h-screen">
+        <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0 h-screen">
           <Header />
           {children}
         </main>

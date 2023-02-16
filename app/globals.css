@@ -27,3 +27,13 @@ a {
     background: black;
   }
 }
+
+[data-nextjs-scroll-focus-boundary] {
+  display: contents;
+}
+
+@layer base {
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
+  }
+}

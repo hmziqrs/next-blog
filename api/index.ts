@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post } from "types";
+import { Post, PostWithPrevNext } from "types";
 import readingTime from "reading-time";
 
 const POSTS_DIR = "./post";
@@ -15,9 +15,22 @@ export async function fetchPosts(): Promise<Post[]> {
   return parsed;
 }
 
-export function fetchPostBySlug(slug: string): Post {
-  const filePath = path.join(POSTS_DIR, slug) + ".md";
-  return fetchPostByPath(filePath);
+export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
+  const posts = await fetchPosts();
+  const index = posts.findIndex((v) => v.slug === slug);
+  if (index === -1) throw new Error("Post not found");
+
+  // if (index === -1) return null;
+  console.log(posts.length, index);
+
+  const prevIndex = index - 1;
+  const nextIndex = index + 1;
+
+  const prev = prevIndex >= 0 ? posts[prevIndex] : null;
+  const next = nextIndex < posts.length ? posts[nextIndex] : null;
+  const post = posts[index];
+
+  return { prev, next, post };
 }
 
 function fetchPostByPath(path: string): Post {

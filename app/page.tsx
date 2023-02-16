@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { cx } from "alias";
 import Pagination from "./pagination";
 import { getSafePageNo } from "utils";
+import { typography } from "theme";
 
 const PER_PAGE = 4;
 
@@ -52,9 +53,11 @@ export default async function Home({ searchParams }: Props) {
               height="200"
             />
             <div className="my-3" />
-            <h1 className="md:text-2xl text-xl font-medium">{title}</h1>
+            <h1 className={typography.blog.title}>{title}</h1>
             <div className="my-1" />
-            <div className="flex flex-row flex-wrap text-zinc-400 lines">
+            <div
+              className={cx("flex flex-row flex-wrap ", typography.blog.meta)}
+            >
               <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
               <div className="mx-2" />
               <p>{Math.ceil(post.readTime.minutes)} minutes read</p>

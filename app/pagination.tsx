@@ -33,11 +33,9 @@ export default function Pagination({ currentPage, total }: Props) {
       const onlyPrev = v - 2 + i;
       const def = v + i;
       if (currentPage > 1 && currentPage < total) {
-        console.log("CHECK pv");
         return prevAndNext;
       }
       if (currentPage === total) {
-        console.log("CHECK-x");
         return onlyPrev;
       }
       return def;

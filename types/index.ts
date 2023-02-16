@@ -15,3 +15,9 @@ export interface Post {
     tags: string[];
   };
 }
+
+export interface PostWithPrevNext {
+  prev: Post | null;
+  next: Post | null;
+  post: Post;
+}
