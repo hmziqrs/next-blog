@@ -25,27 +25,51 @@ export default function Pagination({ currentPage, total }: Props) {
     return <div />;
   }
 
+  const rawPages = new Array(Math.min(3, total));
+  const pages = rawPages
+    .fill(currentPage)
+    .map((v, i) => {
+      const prevAndNext = v + i - 1;
+      const onlyPrev = v - 2 + i;
+      const def = v + i;
+      if (currentPage > 1 && currentPage < total) {
+        console.log("CHECK pv");
+        return prevAndNext;
+      }
+      if (currentPage === total) {
+        console.log("CHECK-x");
+        return onlyPrev;
+      }
+      return def;
+    }) // create array of previous and next pages
+    .filter((v) => {
+      const cp = v !== currentPage; // remove current page
+      const fnl = v !== 1 && v !== total; // remove first and last page
+      const gnl = v > 0 && v < total; // remove pages that are out of range
+      const check = cp && fnl && gnl;
+
+      return check;
+    });
+
   return (
     <>
       <div className="flex items-end justify-end">
         {currentPage > 1 && (
-          <NavigationButton
-            action={() => navigate(currentPage - 1)}
-            label="<"
-          />
-        )}
-        {currentPage > 1 && (
           <NavigationButton action={() => navigate(1)} label="1" />
         )}
-        <NavigationButton action={() => navigate(2)} label="2" />
-        <NavigationButton
-          action={() => navigate(total)}
-          label={total.toString()}
-        />
+        {pages.map((v) => {
+          return (
+            <NavigationButton
+              key={v.toString()}
+              action={() => navigate(v)}
+              label={v}
+            />
+          );
+        })}
         {currentPage < total && (
           <NavigationButton
-            action={() => navigate(currentPage + 1)}
-            label=">"
+            action={() => navigate(total)}
+            label={total.toString()}
           />
         )}
       </div>

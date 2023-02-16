@@ -3,7 +3,6 @@ import CustomHead from "./head";
 
 import { Montserrat } from "@next/font/google";
 import Header from "./app-header";
-import { cx } from "alias";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={font.variable}>
       <body className="bg-zinc-900 ">
-        <main className="mx-auto md:max-w-3xl px-8 md:px-0">
+        <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0">
           <Header />
           {children}
         </main>

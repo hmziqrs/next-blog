@@ -6,7 +6,7 @@ import { cx } from "alias";
 import Pagination from "./pagination";
 import { getSafePageNo } from "utils";
 
-const PER_PAGE = 2;
+const PER_PAGE = 4;
 
 // interface Args {
 //   page: number;
@@ -52,12 +52,9 @@ export default async function Home({ searchParams }: Props) {
               height="200"
             />
             <div className="my-3" />
-            <h1 className="text-2xl font-medium">{title}</h1>
+            <h1 className="md:text-2xl text-xl font-medium">{title}</h1>
             <div className="my-1" />
             <div className="flex flex-row flex-wrap text-zinc-400 lines">
-              {/* <p>
-                By <span className="font-semibold">{v.data.author}</span>
-              </p> */}
               <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
               <div className="mx-2" />
               <p>{Math.ceil(post.readTime.minutes)} minutes read</p>
