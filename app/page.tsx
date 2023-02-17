@@ -5,21 +5,8 @@ import dayjs from "dayjs";
 import { cx } from "alias";
 import Pagination from "./pagination";
 import { getSafePageNo } from "utils";
-import { typography } from "theme";
 
-const PER_PAGE = 4;
-
-// interface Args {
-//   page: number;
-//   total: number;
-// }
-
-// function calculatePagination(args: Args) {
-//   const page = Math.max(1, 1);
-//   const total = args.total;
-
-//   return;
-// }
+const PER_PAGE = 10;
 
 interface Props {
   searchParams: {
@@ -37,14 +24,13 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
-      <div className="my-4" />
       {paginated.map((post, i) => {
         const title = post.data.title;
         return (
           <Link
             key={post.path}
             href={post.slug}
-            className={cx("block", { "my-8": i })}
+            className={cx("block", "my-6", { "mt-0": !i })}
           >
             <Image
               src={"/banner.webp"}
@@ -53,11 +39,9 @@ export default async function Home({ searchParams }: Props) {
               height="200"
             />
             <div className="my-3" />
-            <h1 className={typography.blog.title}>{title}</h1>
+            <h1 className="md:text-2xl text-lg font-medium">{title}</h1>
             <div className="my-1" />
-            <div
-              className={cx("flex flex-row flex-wrap ", typography.blog.meta)}
-            >
+            <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
               <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
               <div className="mx-2" />
               <p>{Math.ceil(post.readTime.minutes)} minutes read</p>
@@ -65,8 +49,12 @@ export default async function Home({ searchParams }: Props) {
           </Link>
         );
       })}
-      <Pagination currentPage={currentPage} total={max} />
-      <div className="mt-10" />
+      {max > 1 && (
+        <>
+          <Pagination currentPage={currentPage} total={max} />
+          <div className="h-8" />
+        </>
+      )}
     </>
   );
 }

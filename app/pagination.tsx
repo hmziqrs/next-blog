@@ -21,10 +21,6 @@ export default function Pagination({ currentPage, total }: Props) {
     router.push(path);
   }
 
-  if (total === 1) {
-    return <div />;
-  }
-
   const rawPages = new Array(Math.min(3, total));
   const pages = rawPages
     .fill(currentPage)

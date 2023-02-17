@@ -4,8 +4,7 @@ import { fetchPostBySlug } from "api";
 import ReactMarkdown from "react-markdown";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { typography } from "theme";
-import { cx } from "alias";
+import Link from "next/link";
 
 export default async function Page({ params }: PostProps) {
   const detail = await fetchPostBySlug(params.slug);
@@ -14,7 +13,6 @@ export default async function Page({ params }: PostProps) {
   return (
     <>
       <HeadMeta {...post} />
-      <div className="my-4" />
       <Image
         src={"/banner.webp"}
         alt={post.data.title}
@@ -22,9 +20,9 @@ export default async function Page({ params }: PostProps) {
         height="200"
       />
       <div className="mt-3" />
-      <h1 className={typography.blog.title}>{post.data.title}</h1>
+      <h1 className="md:text-2xl text-lg font-medium">{post.data.title}</h1>
       <div className="mt-1" />
-      <div className={cx("flex flex-row flex-wrap ", typography.blog.meta)}>
+      <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
         <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
         <div className="mx-2" />
         <p>{Math.ceil(post.readTime.minutes)} minutes read</p>
@@ -35,7 +33,62 @@ export default async function Page({ params }: PostProps) {
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </article>
       </div>
-      <div className="mt-8" />
+      {(prev || next) && (
+        <>
+          <div className="h-4" />
+          <div className="flex flex-col md:flex-row">
+            {prev ? (
+              <Link
+                href={prev.slug}
+                className="text-neutral-300 hover:text-zinc-400 flex flex-row flex-1 items-center stroke-neutral-300 hover:stroke-neutral-400 transition-all"
+              >
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M14 7L9 12L14 17"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div className="w-1" />
+                <p className="flex-1 break-normal line-clamp-1 h-6">
+                  {prev.data.title}
+                </p>
+              </Link>
+            ) : (
+              <div className="flex-1" />
+            )}
+            {next ? (
+              <Link
+                href={next.slug}
+                className="text-neutral-300 hover:text-zinc-400 flex flex-row-reverse flex-1 items-center stroke-neutral-300 hover:stroke-neutral-400 transition-all"
+              >
+                <svg
+                  width="30px"
+                  height="30px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="rotate-180"
+                >
+                  <path
+                    d="M14 7L9 12L14 17"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div className="w-1" />
+                <p className="flex-1 break-normal line-clamp-1 h-6 text-right">
+                  {next.data.title}
+                </p>
+              </Link>
+            ) : (
+              <div className="flex-1" />
+            )}
+          </div>
+        </>
+      )}
+      <div className="h-6" />
     </>
   );
 }
