@@ -18,7 +18,7 @@ export async function fetchPosts(): Promise<Post[]> {
 export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
   const posts = await fetchPosts();
 
-  const index = posts.findIndex((v) => v.slug === "post/" + slug);
+  const index = posts.findIndex((v) => v.slug === path.join(POSTS_DIR, slug));
   if (index === -1) throw new Error("Post not found");
 
   const prevIndex = index - 1;
