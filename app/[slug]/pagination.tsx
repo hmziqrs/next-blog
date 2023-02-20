@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import qs from "query-string";
+import { useRouter } from "next/navigation";
 import { getSafePageNo } from "utils";
 
 interface Props {
@@ -13,11 +12,10 @@ export const dynamic = "force-dynamic";
 
 export default function Pagination({ currentPage, total }: Props) {
   const router = useRouter();
-  const pathName = usePathname();
 
   function navigate(page: number) {
-    const params = { page: getSafePageNo(total, page).toString() };
-    const path = pathName! + "?" + qs.stringify(params);
+    const pageNo = getSafePageNo(total, page).toString();
+    const path = "/" + pageNo;
     router.push(path);
   }
 

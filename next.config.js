@@ -6,6 +6,15 @@ const nextConfig = {
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/1",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
