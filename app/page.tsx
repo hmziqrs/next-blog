@@ -4,9 +4,8 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import { cx } from "alias";
 import Pagination from "./pagination";
-import { getSafePageNo } from "utils";
-
-const PER_PAGE = 10;
+import { getEnv, getSafePageNo } from "utils";
+import { Post } from "types";
 
 interface Props {
   searchParams: {
@@ -14,13 +13,23 @@ interface Props {
   };
 }
 
+function parsePages(
+  posts: Post[],
+  rawCurrentPage: Props["searchParams"]["page"]
+) {
+  const total = posts.length;
+  const { PER_PAGE } = getEnv();
+  const max = Math.ceil(total / PER_PAGE);
+  const currentPage = getSafePageNo(max, rawCurrentPage);
+  const offset = (currentPage - 1) * PER_PAGE;
+  const paginated = posts.slice(offset, currentPage * PER_PAGE);
+
+  return { paginated, max, currentPage };
+}
+
 export default async function Home({ searchParams }: Props) {
   const data = await fetchPosts();
-  const total = data.length;
-  const max = Math.ceil(total / PER_PAGE);
-  const currentPage = getSafePageNo(max, searchParams.page);
-  const offset = (currentPage - 1) * PER_PAGE;
-  const paginated = data.slice(offset, currentPage * PER_PAGE);
+  const { paginated, max, currentPage } = parsePages(data, searchParams.page);
 
   return (
     <>

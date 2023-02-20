@@ -21,3 +21,7 @@ export interface PostWithPrevNext {
   next: Post | null;
   post: Post;
 }
+
+export interface Env {
+  PER_PAGE: number;
+}
