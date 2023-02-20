@@ -36,11 +36,13 @@ function fetchPostByPath(path: string): Post {
   const v = matter(file);
   const stat = fs.statSync(path);
   const slug = path.replace(".md", "");
+  const name = slug.split("/").pop();
   const readTime = readingTime(v.content, {
     wordsPerMinute: 80,
   });
   const data = {
     path,
+    name,
     slug,
     stat,
     readTime,
