@@ -1,15 +1,25 @@
 import HeadMeta from "./HeadMeta";
 import { PostProps } from "./types";
-import { fetchPostBySlug } from "api";
+import { fetchPostBySlug, fetchPosts } from "api";
 import ReactMarkdown from "react-markdown";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Page({ params }: PostProps) {
-  const detail = await fetchPostBySlug(params.slug);
-  const { post, prev, next } = detail;
+export const dynamicParams = true;
 
+export async function generateStaticParams() {
+  const data = await fetchPosts();
+  return data.map((post) => {
+    return {
+      slug: post.name,
+    };
+  });
+}
+
+export default async function Page(props: PostProps) {
+  const detail = await fetchPostBySlug(props.params.slug);
+  const { post, prev, next } = detail;
   return (
     <>
       <HeadMeta {...post} />

@@ -3,6 +3,7 @@ import { ReadTimeResults } from "reading-time";
 
 export interface Post {
   path: string;
+  name: string;
   slug: string;
   content: string;
   stat: Stats;
