@@ -55,9 +55,9 @@ export default async function Page(props: PostProps) {
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M14 7L9 12L14 17"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <div className="w-1" />
@@ -82,9 +82,9 @@ export default async function Page(props: PostProps) {
                 >
                   <path
                     d="M14 7L9 12L14 17"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <div className="w-1" />

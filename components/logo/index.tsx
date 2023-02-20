@@ -1,3 +1,9 @@
+import Link from "next/link";
+
 export default function Logo() {
-  return <h1 className="text-5xl">Logo</h1>;
+  return (
+    <Link href="/">
+      <h1 className="text-5xl">Logo</h1>
+    </Link>
+  );
 }

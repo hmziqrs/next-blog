@@ -13,6 +13,12 @@ interface Props {
   };
 }
 
+// export async function generateStaticParams() {
+//   const posts = await Promise.resolve([1, 2]);
+
+//   return posts;
+// }
+
 function parsePages(
   posts: Post[],
   rawCurrentPage: Props["searchParams"]["page"]
@@ -29,6 +35,8 @@ function parsePages(
 
 export default async function Home({ searchParams }: Props) {
   const data = await fetchPosts();
+  console.log(searchParams);
+
   const { paginated, max, currentPage } = parsePages(data, searchParams.page);
 
   return (
