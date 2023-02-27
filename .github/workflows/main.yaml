@@ -1,5 +1,6 @@
 name: CI and CD
 on: [push]
+
 jobs:
   eslint:
     name: Run eslint

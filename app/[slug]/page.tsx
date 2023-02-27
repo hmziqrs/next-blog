@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Image from "next/image";
 import { fetchPosts } from "api";
 import Link from "next/link";
