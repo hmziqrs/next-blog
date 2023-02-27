@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import { fetchPosts } from "api";
 import Link from "next/link";
@@ -43,9 +44,6 @@ function parsePages(posts: Post[], rawCurrentPage: Props["params"]["slug"]) {
 }
 
 export default async function Home({ params }: Props) {
-  console.log("Home=params");
-  console.log(params);
-
   const data = await fetchPosts();
 
   const { paginated, max, currentPage } = parsePages(data, params.slug);
