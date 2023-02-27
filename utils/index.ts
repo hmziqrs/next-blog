@@ -1,5 +1,6 @@
 import { Env } from "types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getSafePageNo(max: number, page?: any) {
   if (Array.isArray(page)) return 1;
   const parsed = parseInt(page || "1", 10);

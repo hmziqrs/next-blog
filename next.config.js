@@ -6,6 +6,9 @@ const nextConfig = {
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
+  eslint: {
+    dirs: ["."],
+  },
   async redirects() {
     return [
       {

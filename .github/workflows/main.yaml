@@ -1,0 +1,17 @@
+name: CI and CD
+on: [push]
+
+jobs:
+  eslint:
+    name: Run eslint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull project code
+        uses: actions/checkout@v2
+
+      - name: Install packages
+        run: npm i
+
+      - name: Run lint
+        run: npm run lint
