@@ -2,11 +2,7 @@
 
 import Image from "next/image";
 
-const AppError = (params: any) => {
-  console.log("params");
-  console.log(params);
-  console.log("params");
-
+const AppError = () => {
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
       <div className="relative">
@@ -22,7 +18,6 @@ const AppError = (params: any) => {
         </div>
       </div>
       <p>Page not found post/error</p>
-      <div onClick={params.reset}>Reset</div>
     </div>
   );
 };

@@ -18,7 +18,6 @@ const AppError = () => {
         </div>
       </div>
       <p>Page not found slug/error</p>
-      <div onClick={params.reset}>Reset</div>
     </div>
   );
 };

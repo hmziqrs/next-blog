@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function Error(params: any) {
+export default function Error() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
       <div className="relative">
@@ -21,7 +21,6 @@ export default function Error(params: any) {
       <p>This is Not found</p>
       <p>This is Not found</p>
       <p>This is Not found</p>
-      <div onClick={params.reset}>Reset</div>
     </div>
   );
 }
