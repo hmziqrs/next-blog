@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-const AppError = () => {
+export default function Error() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
       <div className="relative">
@@ -17,9 +17,10 @@ const AppError = () => {
           <h1 className="text-xl4 font-medium">404</h1>
         </div>
       </div>
-      <p>Page not found slug/error</p>
+      <p>This is Not found</p>
+      <p>This is Not found</p>
+      <p>This is Not found</p>
+      <p>This is Not found</p>
     </div>
   );
-};
-
-export default AppError;
+}

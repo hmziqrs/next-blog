@@ -6,7 +6,10 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 
-export const dynamicParams = true;
+export const dynamic = "error";
+export const revalidate = false;
+const dynamicParams = false;
+export { dynamicParams };
 
 export async function generateStaticParams() {
   const data = await fetchPosts();
@@ -20,6 +23,7 @@ export async function generateStaticParams() {
 export default async function Page(props: PostProps) {
   const detail = await fetchPostBySlug(props.params.slug);
   const { post, prev, next } = detail;
+
   return (
     <>
       <HeadMeta {...post} />
