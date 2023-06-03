@@ -6,7 +6,8 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 
-export const dynamicParams = true;
+// export const dynamicParams = "force-static";
+// export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   const data = await fetchPosts();

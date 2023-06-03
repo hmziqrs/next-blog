@@ -13,8 +13,6 @@ interface Props {
   };
 }
 
-export const dynamicParams = true;
-
 // export async function generateStaticParams() {
 //   console.log("generateStaticParams");
 
@@ -30,6 +28,19 @@ export const dynamicParams = true;
 
 //   return slugs;
 // }
+
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const data = await fetchPosts();
+  const { max } = parsePages(data, "1");
+
+  const pages = new Array(max)
+    .fill(0)
+    .map((_, index) => (index + 1).toString());
+
+  return pages.map((slug) => ({ slug }));
+}
 
 function parsePages(posts: Post[], rawCurrentPage: Props["params"]["slug"]) {
   const total = posts.length;

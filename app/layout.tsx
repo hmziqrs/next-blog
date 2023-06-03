@@ -1,7 +1,6 @@
 import "./globals.css";
-// import CustomHead from "./head";
 
-import { Montserrat } from "@next/font/google";
+import { Montserrat } from "next/font/google";
 import Header from "./app-header";
 
 const font = Montserrat({

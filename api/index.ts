@@ -7,6 +7,8 @@ import readingTime from "reading-time";
 const POSTS_DIR = "./post";
 
 export async function fetchPosts(): Promise<Post[]> {
+  console.log("fetchPosts");
+
   const dir = fs.readdirSync(POSTS_DIR).filter((file) => file.endsWith(".md"));
   const filesPaths = dir.map((v) => path.join(POSTS_DIR, v));
   const parsed = filesPaths
@@ -19,7 +21,7 @@ export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
   const posts = await fetchPosts();
 
   const index = posts.findIndex((v) => v.slug === path.join(POSTS_DIR, slug));
-  if (index === -1) throw new Error("Post not found");
+  if (index === -1) throw new TypeError("Post not found");
 
   const prevIndex = index - 1;
   const nextIndex = index + 1;
