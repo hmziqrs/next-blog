@@ -29,7 +29,10 @@ interface Props {
 //   return slugs;
 // }
 
-export const dynamic = "force-static";
+export const dynamic = "error";
+export const revalidate = false;
+const dynamicParams = false;
+export { dynamicParams };
 
 export async function generateStaticParams() {
   const data = await fetchPosts();
