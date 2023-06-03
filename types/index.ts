@@ -2,6 +2,15 @@ import { Stats } from "fs"; // title: "This is example one UPDATE"
 import { ReadTimeResults } from "reading-time";
 
 export interface Post {
+  stat: Stats;
+  name: string;
+  translations: string[];
+  files: {
+    [lang: string]: PostFile;
+  };
+}
+
+export interface PostFile {
   path: string;
   name: string;
   slug: string;
