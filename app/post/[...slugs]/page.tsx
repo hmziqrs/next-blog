@@ -15,36 +15,40 @@ export async function generateStaticParams() {
   const data = await fetchPosts();
   return data.map((post) => {
     return {
-      slug: post.name,
+      slug: [post.name],
     };
   });
 }
 
 export default async function Page(props: PostProps) {
-  const detail = await fetchPostBySlug(props.params.slug);
-  const { post, prev, next } = detail;
+  const [slug, language] = props.params.slugs;
+  const detail = await fetchPostBySlug(slug);
+  const postFile = detail.post.getPostFile(language);
+
+  const prev = detail.prev?.files?.en;
+  const next = detail.next?.files?.en;
 
   return (
     <>
-      <HeadMeta {...post} />
+      <HeadMeta {...postFile} />
       <Image
         src={"/banner.webp"}
-        alt={post.data.title}
+        alt={postFile.data.title}
         width="1900"
         height="200"
       />
       <div className="mt-3" />
-      <h1 className="md:text-2xl text-lg font-medium">{post.data.title}</h1>
+      <h1 className="md:text-2xl text-lg font-medium">{postFile.data.title}</h1>
       <div className="mt-1" />
       <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
-        <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
+        <p>{dayjs(postFile.stat.birthtime).format("MMM D, YYYY")}</p>
         <div className="mx-2" />
-        <p>{Math.ceil(post.readTime.minutes)} minutes read</p>
+        <p>{Math.ceil(postFile.readTime.minutes)} minutes read</p>
       </div>
       <div className="mt-8" />
       <div className="w-auto  block">
         <article className="prose prose-invert">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+          <ReactMarkdown>{postFile.content}</ReactMarkdown>
         </article>
       </div>
       {(prev || next) && (

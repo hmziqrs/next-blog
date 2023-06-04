@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post, PostFile, PostWithPrevNext } from "types";
+import { Post, PostFileInterface, PostWithPrevNext } from "types";
 import readingTime from "reading-time";
 
 const POSTS_DIR = "./post";
@@ -13,7 +13,7 @@ export async function fetchPosts(): Promise<Post[]> {
       const stat = fs.statSync(path.join(POSTS_DIR, name));
       let translations: string[] = [];
       const files: {
-        [lang: string]: PostFile;
+        [lang: string]: PostFileInterface;
       } = {};
       if (stat.isDirectory()) {
         const fileNames = fs.readdirSync(path.join(POSTS_DIR, name));
@@ -32,16 +32,14 @@ export async function fetchPosts(): Promise<Post[]> {
       };
     })
     .filter((v) => v.stat.isDirectory())
-    .sort((a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs);
+    .sort((a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs)
+    .map((post) => new Post(post));
   return dirWithStats;
 }
 
 export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
   const posts = await fetchPosts();
-
-  const index = posts.findIndex(
-    (post) => post.name === path.join(POSTS_DIR, slug)
-  );
+  const index = posts.findIndex((post) => post.name === slug);
   if (index === -1) throw new TypeError("Post not found");
 
   const prevIndex = index - 1;
@@ -54,7 +52,7 @@ export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
   return { prev, next, post };
 }
 
-function fetchPostFileByPath(path: string): PostFile {
+function fetchPostFileByPath(path: string): PostFileInterface {
   const file = fs.readFileSync(path, "utf-8");
   const mattered = matter(file);
   const stat = fs.statSync(path);
@@ -71,6 +69,6 @@ function fetchPostFileByPath(path: string): PostFile {
     readTime,
     data: mattered.data,
     content: mattered.content,
-  } as PostFile;
+  } as PostFileInterface;
   return data;
 }

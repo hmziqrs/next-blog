@@ -1,16 +1,41 @@
 import { Stats } from "fs"; // title: "This is example one UPDATE"
 import { ReadTimeResults } from "reading-time";
 
-export interface Post {
+export interface PostInterface {
   stat: Stats;
   name: string;
   translations: string[];
   files: {
-    [lang: string]: PostFile;
+    [lang: string]: PostFileInterface;
   };
 }
 
-export interface PostFile {
+export class Post implements PostInterface {
+  stat: Stats;
+  name: string;
+  translations: string[];
+  files: {
+    [lang: string]: PostFileInterface;
+  };
+  constructor(post: PostInterface) {
+    this.stat = post.stat;
+    this.name = post.name;
+    this.translations = post.translations;
+    this.files = post.files;
+  }
+
+  getSlug(lang?: string): string {
+    const suffix = lang ? `/${lang}` : "";
+    return "post/" + this.name + suffix;
+  }
+
+  getPostFile(lang?: string): PostFileInterface {
+    const langKey = lang || this.translations[0];
+    return this.files[langKey] ?? this.files[this.translations[0]];
+  }
+}
+
+export interface PostFileInterface {
   path: string;
   name: string;
   slug: string;
