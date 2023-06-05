@@ -21,25 +21,21 @@ export default function Pagination({ currentPage, total }: Props) {
 
   const rawPages = new Array(Math.min(3, total));
   const pages = rawPages
-    .fill(currentPage)
-    .map((v, i) => {
-      const prevAndNext = v + i - 1;
-      const onlyPrev = v - 2 + i;
-      const def = v + i;
-      if (currentPage > 1 && currentPage < total) {
-        return prevAndNext;
-      }
-      if (currentPage === total) {
-        return onlyPrev;
-      }
+    .fill(0)
+    .map((_, index) => {
+      const prevAndNext = currentPage + index - 1;
+      const onlyPrev = currentPage - 2 + index;
+      const def = currentPage + index;
+      if (currentPage > 1 && currentPage < total) return prevAndNext;
+      if (currentPage === total) return onlyPrev;
       return def;
     }) // create array of previous and next pages
-    .filter((v) => {
-      const cp = v !== currentPage; // remove current page
-      const fnl = v !== 1 && v !== total; // remove first and last page
-      const gnl = v > 0 && v < total; // remove pages that are out of range
-      const check = cp && fnl && gnl;
-
+    .filter((value) => {
+      const notCurrentPage = value !== currentPage; // remove current page
+      const firstAndLast = value !== 1 && value !== total; // remove first and last page
+      const minMaxCheck = value > 0 && value < total; // remove pages that are out of range
+      const checks = [notCurrentPage, firstAndLast, minMaxCheck];
+      const check = checks.every((v) => v);
       return check;
     });
 
@@ -49,12 +45,12 @@ export default function Pagination({ currentPage, total }: Props) {
         {currentPage > 1 && (
           <NavigationButton action={() => navigate(1)} label="1" />
         )}
-        {pages.map((v) => {
+        {pages.map((page) => {
           return (
             <NavigationButton
-              key={v.toString()}
-              action={() => navigate(v)}
-              label={v}
+              key={page.toString()}
+              action={() => navigate(page)}
+              label={page.toString()}
             />
           );
         })}
