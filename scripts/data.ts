@@ -1,4 +1,6 @@
 import fs from "fs";
+import path from "path";
+import fse from "fs-extra";
 import simpleGit from "simple-git";
 
 const DATA_DIR = "data-repo";
@@ -14,7 +16,7 @@ async function main() {
     const git = simpleGit();
 
     // Check if git repo exists in data directory
-    if (!fs.existsSync(`${DATA_DIR}/.git`)) {
+    if (!fs.existsSync(path.join(DATA_DIR, ".git"))) {
       // Clone git repo
       console.log("Cloning data repo...");
       await git.clone(REPO_URL, DATA_DIR);
@@ -27,6 +29,8 @@ async function main() {
     console.log("Pulled latest changes");
 
     // Copy content from data repo to posts directory
+    console.log("Copying content...");
+    fse.copySync(path.join(DATA_DIR, "src", "content"), "posts");
   } catch (e) {
     console.log(e);
   }
