@@ -13,22 +13,6 @@ interface Props {
   };
 }
 
-// export async function generateStaticParams() {
-//   console.log("generateStaticParams");
-
-//   const data = await fetchPosts();
-
-//   const parsed = parsePages(data, "1");
-//   const slugs = new Array(parsed.max).fill(0).map((_, index) => {
-//     const pageNo = (index + 1).toString();
-//     return { slug: pageNo };
-//   });
-
-//   console.log(slugs);
-
-//   return slugs;
-// }
-
 export const dynamic = "error";
 export const revalidate = false;
 const dynamicParams = false;
@@ -58,22 +42,23 @@ function parsePages(posts: Post[], rawCurrentPage: Props["params"]["slug"]) {
 
 export default async function Home({ params }: Props) {
   const data = await fetchPosts();
-
   const { paginated, max, currentPage } = parsePages(data, params.slug);
 
   return (
     <>
       {paginated.map((post, i) => {
-        const title = post.data.title;
+        const file = post.files.en;
+        const title = file.data.title;
+
         return (
           <Link
-            key={post.path}
-            href={post.slug}
+            key={post.name}
+            href={post.getSlug()}
             className={cx("block", "my-6", { "mt-0": !i })}
           >
             <Image
               src={"/banner.webp"}
-              alt={post.data.title}
+              alt={post.name}
               width="1900"
               height="200"
             />
@@ -83,7 +68,6 @@ export default async function Home({ params }: Props) {
             <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
               <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
               <div className="mx-2" />
-              <p>{Math.ceil(post.readTime.minutes)} minutes read</p>
             </div>
           </Link>
         );
