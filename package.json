@@ -2,10 +2,9 @@
   "name": "next-13",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "data": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/data.ts",
-    "data-legacy": "ts-node scripts/data.ts",
+    "data": "node --experimental-modules --loader ts-node/esm ./scripts/data.ts",
+    "data-legacy": "ts-node  scripts/data.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { Post, PostFileInterface, PostWithPrevNext } from "types";
 import readingTime from "reading-time";
 
-const POSTS_DIR = "./post";
+const POSTS_DIR = "./posts";
 
 export async function fetchPosts(): Promise<Post[]> {
   const dir = fs.readdirSync(POSTS_DIR);
