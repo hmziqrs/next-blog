@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 
 const katakana =
@@ -20,18 +22,28 @@ export default function HeroCanvas() {
     const columns = canvas.width / fontSize;
 
     const drops: number[] = [];
+    const started: boolean[] = [];
     for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
+      drops[x] = 0;
+      started[x] = false;
     }
 
     function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#00ff0068";
+      ctx.fillStyle = "#00ff00";
       ctx.font = fontSize + "px arial";
 
       for (let i = 0; i < drops.length; i++) {
+        if (!started[i] && Math.random() > 0.992) {
+          started[i] = true;
+        }
+
+        if (!started[i]) {
+          continue;
+        }
+
         const text = chars[Math.floor(Math.random() * chars.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
@@ -43,11 +55,14 @@ export default function HeroCanvas() {
       }
     }
 
-    setInterval(draw, 33);
+    setInterval(draw, 60);
   }, []);
 
   return (
-    <div id="canvas-base" className="h-full w-full left-0 top-0 absolute z-0">
+    <div
+      id="canvas-base"
+      className="h-full w-full left-0 top-0 absolute z-0 opacity-20"
+    >
       <canvas id="hero-canvas" className="h-full w-full"></canvas>
     </div>
   );

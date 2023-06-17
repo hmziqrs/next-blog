@@ -1,6 +1,5 @@
 "use client";
 import Typewriter from "typewriter-effect";
-import HeroCanvas from "./hero-canvas";
 
 const DELAY = {
   SHORT: 220,
@@ -10,7 +9,6 @@ const DELAY = {
 export default function Hero() {
   return (
     <div className="h-96 py-20 px-2 relative">
-      <HeroCanvas />
       <div className="relative block">
         <Typewriter
           options={{
