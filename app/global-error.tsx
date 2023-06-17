@@ -17,7 +17,7 @@ const AppError = () => {
           <h1 className="text-xl4 font-medium">404</h1>
         </div>
       </div>
-      <p>Page not found global/error</p>
+      <p>Page not found root level global-error.tsx</p>
     </div>
   );
 };
