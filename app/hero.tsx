@@ -1,4 +1,5 @@
 "use client";
+import Container from "components/container";
 import Typewriter from "typewriter-effect";
 
 const DELAY = {
@@ -8,33 +9,37 @@ const DELAY = {
 
 export default function Hero() {
   return (
-    <div className="h-96 py-20 px-2 relative">
-      <div className="relative block">
-        <Typewriter
-          options={{
-            delay: 45,
-          }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString('<span class="text-3xl font-medium">Hey there!<span>')
-              .changeDelay(25)
-              .pauseFor(DELAY.LONG)
-              .typeString("<br /><br />")
-              .pauseFor(DELAY.SHORT)
-              .typeString(
-                '<span class="">Welcome to your window into my world of development.</span>'
-              )
-              .changeDelay(15)
-              .pauseFor(DELAY.LONG)
-              .typeString("<br /><br />")
-              .pauseFor(DELAY.SHORT)
-              .typeString(
-                "This is where I write/log my useful-ish thoughts and experiences, documenting my work and hobbies for you to explore."
-              )
-              .start();
-          }}
-        />
+    <Container>
+      <div className="h-96 py-20 relative">
+        <div className="relative block">
+          <Typewriter
+            options={{
+              delay: 45,
+            }}
+            onInit={(typewriter) => {
+              typewriter
+                .typeString(
+                  '<span class="text-3xl font-medium">Hey there!<span>'
+                )
+                .changeDelay(25)
+                .pauseFor(DELAY.LONG)
+                .typeString("<br /><br />")
+                .pauseFor(DELAY.SHORT)
+                .typeString(
+                  '<span class="">Welcome to your window into my world of development.</span>'
+                )
+                .changeDelay(15)
+                .pauseFor(DELAY.LONG)
+                .typeString("<br /><br />")
+                .pauseFor(DELAY.SHORT)
+                .typeString(
+                  "This is where I write/log my useful-ish thoughts and experiences, documenting my work and hobbies for you to explore."
+                )
+                .start();
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }

@@ -19,6 +19,12 @@ export const categories: Category[] = [
       "Technology is the sum of techniques, skills, methods, and processes used in the production of goods or services or in the accomplishment of objectives, such as scientific investigation.",
   },
   {
+    label: "Lens",
+    key: "lens",
+    description:
+      "Technology is the sum of techniques, skills, methods, and processes used in the production of goods or services or in the accomplishment of objectives, such as scientific investigation.",
+  },
+  {
     label: "Travel",
     key: "travel",
     description:

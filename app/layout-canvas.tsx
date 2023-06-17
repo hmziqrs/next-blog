@@ -19,7 +19,6 @@ export default function LayoutCanvas() {
     if (!pathsToRender.includes(path)) {
       return;
     }
-
     const base = document.getElementById("canvas-base") as HTMLDivElement;
     const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -28,10 +27,10 @@ export default function LayoutCanvas() {
     canvas.height = base.clientHeight;
 
     const fontSize = 12;
-    const columns = canvas.width / fontSize;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = new Array(columns).map(() => 0);
+    const started: boolean[] = drops.map(() => false);
 
-    const drops: number[] = [];
-    const started: boolean[] = [];
     for (let x = 0; x < columns; x++) {
       drops[x] = 0;
       started[x] = false;
@@ -74,7 +73,7 @@ export default function LayoutCanvas() {
   return (
     <div
       id="canvas-base"
-      className="h-full w-full left-0 top-0 absolute z-0 opacity-20"
+      className="h-full w-full left-0 top-0 absolute z-0 opacity-30"
     >
       <canvas id="hero-canvas" className="h-full w-full"></canvas>
     </div>

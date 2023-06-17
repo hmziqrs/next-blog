@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className={font.variable}>
       <body className="bg-zinc-900 h-screen">
         <LayoutCanvas />
-        <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0 relative">
+        <main className="relative">
           <Header />
           {children}
         </main>
