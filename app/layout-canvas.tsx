@@ -1,7 +1,8 @@
 "use client";
 
+import { debounce } from "lodash";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 const katakana =
   "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
@@ -14,11 +15,9 @@ const pathsToRender = ["/", "/about", "/contact"];
 
 export default function LayoutCanvas() {
   const path = usePathname();
+  const intervalRef = useRef<NodeJS.Timer | null>(null);
 
-  useEffect(() => {
-    if (!pathsToRender.includes(path)) {
-      return;
-    }
+  function initCanvas() {
     const base = document.getElementById("canvas-base") as HTMLDivElement;
     const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -59,10 +58,41 @@ export default function LayoutCanvas() {
       }
     }
 
-    const interval = setInterval(draw, 60);
+    intervalRef.current = setInterval(draw, 60);
+  }
+
+  function clearCanvas() {
+    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  useLayoutEffect(() => {
+    if (!pathsToRender.includes(path)) return;
+    function reset() {
+      clearCanvas();
+      initCanvas();
+    }
+
+    const debounced = debounce(reset, 400);
+    window.addEventListener("resize", debounced);
+    return () => {
+      console.log("removing listener");
+      window.removeEventListener("resize", debounced);
+    };
+  }, [path]);
+
+  useEffect(() => {
+    if (!pathsToRender.includes(path)) {
+      return;
+    }
+
+    initCanvas();
 
     return () => {
-      clearInterval(interval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, [path]);
 
