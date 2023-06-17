@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { Montserrat } from "next/font/google";
 import Header from "./app-header";
-import HeroCanvas from "./hero-canvas";
+import LayoutCanvas from "./layout-canvas";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={font.variable}>
       <body className="bg-zinc-900 h-screen">
-        <HeroCanvas />
+        <LayoutCanvas />
         <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0 relative">
           <Header />
           {children}

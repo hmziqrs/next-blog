@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const katakana =
@@ -9,8 +10,16 @@ const nums = "0123456789";
 
 const chars = (katakana + latin + nums).split("");
 
-export default function HeroCanvas() {
+const pathsToRender = ["/", "/about", "/contact"];
+
+export default function LayoutCanvas() {
+  const path = usePathname();
+
   useEffect(() => {
+    if (!pathsToRender.includes(path)) {
+      return;
+    }
+
     const base = document.getElementById("canvas-base") as HTMLDivElement;
     const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -31,7 +40,6 @@ export default function HeroCanvas() {
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = "#00ff00";
       ctx.font = fontSize + "px arial";
 
@@ -39,10 +47,7 @@ export default function HeroCanvas() {
         if (!started[i] && Math.random() > 0.992) {
           started[i] = true;
         }
-
-        if (!started[i]) {
-          continue;
-        }
+        if (!started[i]) continue;
 
         const text = chars[Math.floor(Math.random() * chars.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -55,8 +60,16 @@ export default function HeroCanvas() {
       }
     }
 
-    setInterval(draw, 60);
-  }, []);
+    const interval = setInterval(draw, 60);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [path]);
+
+  if (!pathsToRender.includes(path)) {
+    return null;
+  }
 
   return (
     <div
