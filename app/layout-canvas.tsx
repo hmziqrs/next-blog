@@ -103,7 +103,7 @@ export default function LayoutCanvas() {
   return (
     <div
       id="canvas-base"
-      className="h-full w-full left-0 top-0 absolute z-0 opacity-30"
+      className="h-full w-full left-0 top-0 fixed z-0 opacity-30"
     >
       <canvas id="hero-canvas" className="h-full w-full"></canvas>
     </div>

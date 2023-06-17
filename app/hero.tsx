@@ -1,4 +1,5 @@
 "use client";
+
 import Container from "components/container";
 import Typewriter from "typewriter-effect";
 
@@ -10,8 +11,8 @@ const DELAY = {
 export default function Hero() {
   return (
     <Container>
-      <div className="h-96 py-20 relative">
-        <div className="relative block">
+      <div className="relative py-40 flex items-center">
+        <div className="relative block h-48">
           <Typewriter
             options={{
               delay: 45,
