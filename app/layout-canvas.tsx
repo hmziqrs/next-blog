@@ -17,13 +17,15 @@ export default function LayoutCanvas() {
   const path = usePathname();
   const intervalRef = useRef<NodeJS.Timer | null>(null);
 
-  function initCanvas() {
-    const base = document.getElementById("canvas-base") as HTMLDivElement;
-    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
-    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  function getCanvas() {
+    return document.getElementById("hero-canvas") as HTMLCanvasElement;
+  }
 
-    canvas.width = base.clientWidth;
-    canvas.height = base.clientHeight;
+  function initCanvas() {
+    const canvas = getCanvas();
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
 
     const fontSize = 12;
     const columns = Math.floor(canvas.width / fontSize);
@@ -62,7 +64,10 @@ export default function LayoutCanvas() {
   }
 
   function clearCanvas() {
-    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    const canvas = getCanvas();
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
