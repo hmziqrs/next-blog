@@ -47,6 +47,9 @@ export interface PostFileInterface {
     author: string;
     category: string;
     image: string;
+    bannerImage: string;
+    datePublished: string;
+    dateModified: string;
     tags: string[];
   };
 }

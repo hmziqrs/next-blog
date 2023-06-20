@@ -3,7 +3,8 @@ import { fetchPosts } from "api";
 import Container from "components/container";
 import { sortBy } from "lodash";
 import { Post } from "types";
-import PostTags from "./post-tags";
+import { getAsset } from "utils";
+import Image from "next/image";
 
 export async function RootPosts() {
   const latest = await fetchPosts();
@@ -35,18 +36,37 @@ export async function RootPosts() {
 function PostCard({ post }: { post: Post }) {
   const file = post.getPostFile();
 
-  const tags = sortBy(file.data.tags, (tag) => tag.length).slice(0, 4);
+  const tags = sortBy(file.data.tags, (tag) => tag.length);
+  const asset = getAsset(file.data.bannerImage);
 
   return (
     <div
       className={cx(
-        "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip p-4"
+        "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer",
+        "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow"
       )}
     >
-      <h2 className="text-base">{file.data.title}</h2>
-      <p className="text-gray-500 text-sm">{file.data.description}</p>
-      <div className="h-10" />
-      <PostTags tags={tags} />
+      <Image
+        src={getAsset(file.data.bannerImage)}
+        alt="ETO BLEH! 404"
+        width={1200}
+        height={600}
+      />
+      <div className="h-3" />
+      <h2 className="text-base line-clamp-2 px-4">{file.data.title}</h2>
+      <div className="overflow-scroll py-2 px-4 space-x-2">
+        {tags.map((tag) => {
+          return (
+            <span
+              key={tag}
+              className="inline bg-zinc-800 text-zinc-100 rounded-full px-2 py-1 text-xs"
+            >
+              #{tag.toLowerCase()}
+            </span>
+          );
+        })}
+      </div>
+      <div className="h-2" />
     </div>
   );
 }
