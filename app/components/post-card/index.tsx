@@ -4,7 +4,12 @@ import { Post } from "types";
 import { getAsset } from "utils";
 import Image from "next/image";
 
-export default function PostCard({ post }: { post: Post }) {
+interface PostCardProps {
+  post: Post;
+  className?: string;
+}
+
+export default function PostCard({ post, className }: PostCardProps) {
   const file = post.getPostFile();
 
   const tags = sortBy(file.data.tags, (tag) => tag.length);
@@ -13,7 +18,9 @@ export default function PostCard({ post }: { post: Post }) {
     <div
       className={cx(
         "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer ",
-        "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow"
+        "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow",
+        "max-w-[30%]",
+        className
       )}
     >
       <Image
