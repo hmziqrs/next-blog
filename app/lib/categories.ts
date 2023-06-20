@@ -18,7 +18,8 @@ export const categories: Category[] = [
     description:
       "Technology is the sum of techniques, skills, methods, and processes used in the production of goods or services or in the accomplishment of objectives, such as scientific investigation.",
     image: {
-      thumb: "./category/technology-thumb.jpg",
+      // thumb: "./category/technology-thumb.jpg",
+      thumb: "/assets/categories/thumb/technology.jpg",
     },
   },
   {
@@ -28,7 +29,8 @@ export const categories: Category[] = [
     description:
       "Travel is the movement of people between distant geographical locations.",
     image: {
-      thumb: "./category/travel-thumb.jpg",
+      // thumb: "./category/travel-thumb.jpg",
+      thumb: "/assets/categories/thumb/travel.jpg",
     },
   },
   {
@@ -38,7 +40,8 @@ export const categories: Category[] = [
     description:
       "Life is a characteristic distinguishing physical entities having biological processes, such as signaling and self-sustaining processes, from those that do not, either because such functions have ceased, or because they never had such functions and are classified as inanimate.",
     image: {
-      thumb: "./category/life-thumb.jpg",
+      // thumb: "./category/life-thumb.jpg",
+      thumb: "/assets/categories/thumb/life.jpg",
     },
   },
   {
@@ -48,7 +51,8 @@ export const categories: Category[] = [
     description:
       "Technology is the sum of techniques, skills, methods, and processes used in the production of goods or services or in the accomplishment of objectives, such as scientific investigation.",
     image: {
-      thumb: "./category/lens-thumb.jpg",
+      // thumb: "./category/lens-thumb.jpg",
+      thumb: "/assets/categories/thumb/lens.jpg",
     },
   },
 ];

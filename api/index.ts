@@ -9,31 +9,32 @@ const POSTS_DIR = "./posts";
 export async function fetchPosts(): Promise<Post[]> {
   const dir = fs.readdirSync(POSTS_DIR);
   const dirWithStats = dir
-    .map((name) => {
+    .filter((name) => {
       const stat = fs.statSync(path.join(POSTS_DIR, name));
+      return stat.isDirectory();
+    })
+    .map((name) => {
       let translations: string[] = [];
       const files: {
         [lang: string]: PostFileInterface;
       } = {};
-      if (stat.isDirectory()) {
-        const fileNames = fs.readdirSync(path.join(POSTS_DIR, name));
-        translations = fileNames.map((fileName) => fileName.replace(".md", ""));
-        translations.forEach((language) => {
-          files[language] = fetchPostFileByPath(
-            path.join(POSTS_DIR, name, language + ".md")
-          );
-        });
-      }
-      return {
-        stat,
+      const fileNames = fs.readdirSync(path.join(POSTS_DIR, name));
+      translations = fileNames.map((fileName) => fileName.replace(".md", ""));
+      translations.forEach((language) => {
+        files[language] = fetchPostFileByPath(
+          path.join(POSTS_DIR, name, language + ".md")
+        );
+      });
+      const post = {
         name,
         translations,
         files,
       };
-    })
-    .filter((v) => v.stat.isDirectory())
-    .sort((a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs)
-    .map((post) => new Post(post));
+      return new Post(post);
+    });
+
+  console.log(dirWithStats[0].files.en.data);
+
   return dirWithStats;
 }
 
@@ -55,7 +56,6 @@ export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
 function fetchPostFileByPath(path: string): PostFileInterface {
   const file = fs.readFileSync(path, "utf-8");
   const mattered = matter(file);
-  const stat = fs.statSync(path);
   const slug = path.replace(".md", "");
   const name = slug.split("/").pop();
   const readTime = readingTime(mattered.content, {
@@ -65,7 +65,6 @@ function fetchPostFileByPath(path: string): PostFileInterface {
     path,
     name,
     slug,
-    stat,
     readTime,
     data: mattered.data,
     content: mattered.content,

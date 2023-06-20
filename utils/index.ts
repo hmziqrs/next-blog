@@ -11,5 +11,14 @@ export function getSafePageNo(max: number, page?: any) {
 export function getEnv(): Env {
   return {
     PER_PAGE: parseInt(process.env.NEXT_PUBLIC_PER_PAGE || "10", 10),
+    BLAZE_BUCKET_URL: process.env.BLAZE_BUCKET_URL || "",
   };
+}
+
+export function getBlazeAsset(asset: string): string {
+  return `${getEnv().BLAZE_BUCKET_URL}${asset}`;
+}
+
+export function getAsset(asset: string): string {
+  return getBlazeAsset(asset);
 }

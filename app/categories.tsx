@@ -1,6 +1,7 @@
 import Container from "components/container";
 import { categories } from "./lib/categories";
 import { cx } from "alias";
+import { getAsset } from "utils";
 
 export default function RootCategoriesSection() {
   return (
@@ -24,7 +25,7 @@ export default function RootCategoriesSection() {
                   "group-hover:scale-125 group-hover:translate-x-[-10%] group-hover:translate-y-[-10%]"
                 )}
                 style={{
-                  backgroundImage: `url(${category.image.thumb})`,
+                  backgroundImage: `url(${getAsset(category.image.thumb)})`,
                 }}
               />
               <div
