@@ -1,0 +1,36 @@
+import Container from "components/container";
+import PostCard from "components/post-card";
+import Link from "next/link";
+import { Post } from "types";
+
+interface PostsSectionProps {
+  posts: Post[];
+  label: string;
+  buttonLabel?: string;
+  buttonLink?: string;
+}
+
+export async function FewPostsSection({
+  posts,
+  label,
+  buttonLabel,
+  buttonLink,
+}: PostsSectionProps) {
+  const renderButton = buttonLabel && buttonLink;
+  return (
+    <div className=" bg-black/60 py-12">
+      <Container>
+        <div className="flex flex-row justify-space">
+          <h2 className="text-2xl">{label}</h2>
+          {renderButton && <Link href={buttonLink}>{buttonLabel}</Link>}
+        </div>
+        <div className="h-4" />
+        <div className="flex flex-row space-x-4">
+          {posts.map((post) => {
+            return <PostCard key={post.getSlug()} post={post} />;
+          })}
+        </div>
+      </Container>
+    </div>
+  );
+}

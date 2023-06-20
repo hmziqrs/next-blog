@@ -1,16 +1,15 @@
 import Container from "components/container";
-import { categories } from "./lib/categories";
+import { categories } from "lib/categories";
 import { cx } from "alias";
 import { getAsset } from "utils";
 
-export default function RootCategoriesSection() {
+export default function CategoriesSection() {
   return (
     <Container>
       <h1 className="text-center text-4xl font-medium">Explore</h1>
       <div className="h-8" />
       <div className="flex flex-row space-x-6">
         {categories.map((category) => {
-          // style={{ backgroundImage: `url(${category.image.thumb})` }}
           return (
             <div
               key={category.key}

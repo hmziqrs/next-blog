@@ -13,7 +13,7 @@ const chars = (katakana + latin + nums).split("");
 
 const pathsToRender = ["/", "/about", "/contact"];
 
-export default function LayoutCanvas() {
+export default function MatrixCanvas() {
   const path = usePathname();
   const intervalRef = useRef<NodeJS.Timer | null>(null);
 
