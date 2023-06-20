@@ -13,7 +13,7 @@ export async function RootPosts() {
 
   return (
     <>
-      <div className="my-10 bg-black/60 py-12">
+      <div className="my-10 bg-black/80 py-12">
         <Container>
           <h2 className="text-2xl">Latest logs:</h2>
           <div className="h-4" />
@@ -24,9 +24,15 @@ export async function RootPosts() {
           </div>
         </Container>
       </div>
-      <div className="my-10 bg-black/60 py-12">
+      <div className="my-10 bg-black/80 py-12">
         <Container>
-          <h2 className="text-2xl">Most Viewed logs:</h2>
+          <h2 className="text-2xl">Most viewed logs:</h2>
+          <div className="h-4" />
+          <div className="flex flex-row space-x-4">
+            {posts.map((post) => {
+              return <PostCard key={post.getSlug()} post={post} />;
+            })}
+          </div>
         </Container>
       </div>
     </>
@@ -37,7 +43,6 @@ function PostCard({ post }: { post: Post }) {
   const file = post.getPostFile();
 
   const tags = sortBy(file.data.tags, (tag) => tag.length);
-  const asset = getAsset(file.data.bannerImage);
 
   return (
     <div
