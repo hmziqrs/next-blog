@@ -7,6 +7,7 @@ export default function RootPage() {
     <div>
       <Hero />
       <RootCategoriesSection />
+      <div className="h-10" />
     </div>
   );
 }

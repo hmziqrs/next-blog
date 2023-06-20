@@ -5,7 +5,7 @@ import { cx } from "alias";
 export default function RootCategoriesSection() {
   return (
     <Container>
-      <h1 className="text-center text-4xl font-medium">Categories</h1>
+      <h1 className="text-center text-4xl font-medium">Explore</h1>
       <div className="h-8" />
       <div className="flex flex-row space-x-6">
         {categories.map((category) => {
@@ -19,7 +19,7 @@ export default function RootCategoriesSection() {
             >
               <div
                 className={cx(
-                  "absolute inset-0 bg-cover bg-center",
+                  "absolute inset-0 bg-cover bg-center clip",
                   "scale-[200%] translate-x-[50%] translate-y-[50%] transition-all duration-500 ease-in-out",
                   "group-hover:scale-125 group-hover:translate-x-[-10%] group-hover:translate-y-[-10%]"
                 )}
@@ -27,9 +27,18 @@ export default function RootCategoriesSection() {
                   backgroundImage: `url(${category.image.thumb})`,
                 }}
               />
-              <div className="absolute inset-0 bg-black opacity-80 transition-all duration-500 group-hover:opacity-20" />
-              <div className="relative block">
-                <h2>{category.label}</h2>
+              <div
+                className={cx(
+                  "absolute h-[200%] w-full transition-all duration-500 top-0 left-0",
+                  "bg-gradient-to-b from-50% from-black via-transparent to-90% to-black",
+                  "translate-y-0 group-hover:translate-y-[-50%]",
+                  "opacity-80 group-hover:opacity-40x"
+                )}
+              />
+              <div className="relative h-full flex flex-col items-center py-28 px-4">
+                <h2 className="text-2xl text-center">{category.label}</h2>
+                <div className="h-2" />
+                <p className="text-center text-sm ">{category.short}</p>
               </div>
             </div>
           );
