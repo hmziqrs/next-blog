@@ -13,7 +13,7 @@ export async function RootPosts() {
 
   return (
     <>
-      <div className="my-10 bg-black/80 py-12">
+      <div className="my-10 bg-black/60 py-12">
         <Container>
           <h2 className="text-2xl">Latest logs:</h2>
           <div className="h-4" />
@@ -24,7 +24,7 @@ export async function RootPosts() {
           </div>
         </Container>
       </div>
-      <div className="my-10 bg-black/80 py-12">
+      <div className="my-10 bg-black/60 py-12">
         <Container>
           <h2 className="text-2xl">Most viewed logs:</h2>
           <div className="h-4" />
@@ -47,15 +47,16 @@ function PostCard({ post }: { post: Post }) {
   return (
     <div
       className={cx(
-        "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer",
+        "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer ",
         "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow"
       )}
     >
       <Image
+        alt={file.data.title}
+        style={{ objectFit: "cover" }}
         src={getAsset(file.data.bannerImage)}
-        alt="ETO BLEH! 404"
         width={1200}
-        height={600}
+        height={100}
       />
       <div className="h-3" />
       <h2 className="text-base line-clamp-2 px-4">{file.data.title}</h2>
