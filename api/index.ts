@@ -33,8 +33,6 @@ export async function fetchPosts(): Promise<Post[]> {
       return new Post(post);
     });
 
-  console.log(dirWithStats[0].files.en.data);
-
   return dirWithStats;
 }
 
