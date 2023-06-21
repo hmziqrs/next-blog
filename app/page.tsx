@@ -12,8 +12,18 @@ export default async function RootPage() {
       <Hero />
       <CategoriesSection />
       <div className="h-10" />
-      <FewPostsSection posts={fakePosts} label="Latest logs:" />
-      <FewPostsSection posts={fakePosts} label="Most viewed logs:" />
+      <FewPostsSection
+        posts={fakePosts}
+        label="Latest logs:"
+        buttonLabel="View all"
+        buttonLink="/posts/latest"
+      />
+      <FewPostsSection
+        posts={fakePosts}
+        label="Most viewed logs:"
+        buttonLabel="View all"
+        buttonLink="/posts/most-viewed"
+      />
       <div className="h-10" />
     </div>
   );

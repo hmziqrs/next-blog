@@ -20,9 +20,13 @@ export async function FewPostsSection({
   return (
     <div className=" bg-black/60 py-12">
       <Container>
-        <div className="flex flex-row justify-space">
+        <div className="flex flex-row justify-between items-center">
           <h2 className="text-2xl">{label}</h2>
-          {renderButton && <Link href={buttonLink}>{buttonLabel}</Link>}
+          {renderButton && (
+            <Link href={buttonLink} className="font-medium underline">
+              {buttonLabel}
+            </Link>
+          )}
         </div>
         <div className="h-4" />
         <div className="flex flex-row space-x-4">

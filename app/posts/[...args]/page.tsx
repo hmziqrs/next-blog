@@ -6,78 +6,59 @@ import { cx } from "alias";
 import Pagination from "./pagination";
 import { getEnv, getSafePageNo } from "utils";
 import { Post } from "types";
-
-interface Props {
-  params: {
-    slug: string;
-  };
-}
+import { PostsProps } from "./types";
+import { parseArgs } from "./utils";
+import Container from "components/container";
+import { categories } from "lib/categories";
 
 export const dynamic = "error";
 export const revalidate = false;
 const dynamicParams = false;
 export { dynamicParams };
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
+//   const data = await fetchPosts();
+//   const { max } = parsePages(data, "1");
+
+//   const pages = new Array(max)
+//     .fill(0)
+//     .map((_, index) => (index + 1).toString());
+
+//   return pages.map((slug) => ({ slug }));
+// }
+
+export default async function Home({ params }: PostsProps) {
   const data = await fetchPosts();
-  const { max } = parsePages(data, "1");
 
-  const pages = new Array(max)
-    .fill(0)
-    .map((_, index) => (index + 1).toString());
+  const { args, indexes } = parseArgs(params.args);
+  console.log(args, indexes);
 
-  return pages.map((slug) => ({ slug }));
-}
-
-function parsePages(posts: Post[], rawCurrentPage: Props["params"]["slug"]) {
-  const total = posts.length;
-  const { PER_PAGE } = getEnv();
-  const max = Math.ceil(total / PER_PAGE);
-  const currentPage = getSafePageNo(max, rawCurrentPage);
-  const offset = (currentPage - 1) * PER_PAGE;
-  const paginated = posts.slice(offset, currentPage * PER_PAGE);
-
-  return { paginated, max, currentPage };
-}
-
-export default async function Home({ params }: Props) {
-  const data = await fetchPosts();
-  const { paginated, max, currentPage } = parsePages(data, params.slug);
+  const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
 
   return (
-    <>
-      {paginated.map((post, i) => {
-        const file = post.files.en;
-        const title = file.data.title;
-
-        return (
-          <Link
-            key={post.name}
-            href={post.getSlug()}
-            className={cx("block", "my-6", { "mt-0": !i })}
-          >
-            <Image
-              src={"/banner.webp"}
-              alt={post.name}
-              width="1900"
-              height="200"
-            />
-            <div className="my-3" />
-            <h1 className="md:text-2xl text-lg font-medium">{title}</h1>
-            <div className="my-1" />
-            <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
-              <p>{dayjs(post.stat.birthtime).format("MMM D, YYYY")}</p>
-              <div className="mx-2" />
-            </div>
-          </Link>
-        );
-      })}
-      {max > 1 && (
-        <>
-          <Pagination currentPage={currentPage} total={max} />
-          <div className="h-8" />
-        </>
-      )}
-    </>
+    <Container>
+      {/* <h1 className="text-3xl">Posts</h1> */}
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col">
+          <h2>Categories</h2>
+          <div className="flex flex-row flex-wrap space-x-2">
+            {categoriesToRender.map((category) => {
+              return (
+                <div
+                  key={category.key}
+                  className="px-4 py-2 bg-zinc-800 cursor-pointer"
+                >
+                  <p className="text-sm">{category.label}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <h2>Sort</h2>
+          <div></div>
+        </div>
+      </div>
+    </Container>
   );
 }

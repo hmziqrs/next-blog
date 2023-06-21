@@ -24,7 +24,7 @@ export default function RootLayout({
         <MatrixCanvas />
         <main className="relative min-h-screen">
           <Header />
-          {children}
+          <div className="min-h-[calc(100vh-240px)]">{children}</div>
           <Footer />
         </main>
       </body>
