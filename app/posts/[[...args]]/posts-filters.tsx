@@ -7,8 +7,8 @@ import { getParamsFromArgsIndexes } from "./utils";
 
 export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
-  const links = categoriesToRender.map((category) => {
-    return getParamsFromArgsIndexes("sort", category.key, args, indexes);
+  const links = PostsSorts.map((sort) => {
+    return getParamsFromArgsIndexes("sort", sort, args, indexes);
   });
 
   return (
