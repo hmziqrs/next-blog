@@ -1,36 +1,15 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import { categories } from "lib/categories";
-import { PostsArgs, PostsArgsIndexes, PostsSorts } from "./types";
+import { PostsSorts } from "./types";
 import Dropdown from "components/dropdown";
 import { cx } from "alias";
-import { buildParamsFromIndexes } from "./utils";
-
-interface PostsFiltersProps {
-  args: PostsArgs;
-  indexes: PostsArgsIndexes;
-}
+import { PostsFiltersProps } from "./types";
+import { getParamsFromArgsIndexes } from "./utils";
 
 export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
-  const router = useRouter();
-
-  function navigate(newParams: string[]) {
-    router.push(`/posts/${newParams.join("/")}`);
-  }
-
-  function onSortSelect(sort: string) {
-    const newArgs = { ...args, sort };
-    const params = buildParamsFromIndexes(newArgs, indexes);
-    navigate(params);
-  }
-
-  function onCategorySelect(category: string) {
-    const newArgs = { ...args, category };
-    const params = buildParamsFromIndexes(newArgs, indexes);
-    navigate(params);
-  }
+  const links = categoriesToRender.map((category) => {
+    return getParamsFromArgsIndexes("sort", category.key, args, indexes);
+  });
 
   return (
     <div className="flex flex-row justify-between items-end">
@@ -40,7 +19,7 @@ export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
           return (
             <div
               key={category.key}
-              onClick={() => onCategorySelect(category.key)}
+              // onClick={() => onSelect("category", category.key)}
               className={cx(
                 "px-4 py-2  cursor-pointer rounded-md shadow shadow-white/0",
                 "hover:bg-zinc-700 transition-all duration-300  hover:shadow-lg hover:shadow-white/5",
@@ -54,9 +33,9 @@ export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
       </div>
       <Dropdown
         title="Sort"
+        links={links}
         items={PostsSorts}
         selected={args.sort}
-        onSelect={onSortSelect}
       />
     </div>
   );

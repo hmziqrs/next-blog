@@ -1,24 +1,15 @@
-"use client";
+import Link from "next/link";
 
-import { useRouter } from "next/navigation";
-import { getSafePageNo } from "utils";
-
-interface Props {
+interface PaginationProps {
   currentPage: number;
   total: number;
 }
 
-export const dynamic = "force-dynamic";
+interface PaginationButtonProps {
+  page: number;
+}
 
-export default function Pagination({ currentPage, total }: Props) {
-  const router = useRouter();
-
-  function navigate(page: number) {
-    const pageNo = getSafePageNo(total, page).toString();
-    const path = "/" + pageNo;
-    router.push(path);
-  }
-
+export default function Pagination({ currentPage, total }: PaginationProps) {
   const rawPages = new Array(Math.min(3, total));
   const pages = rawPages
     .fill(0)
@@ -42,42 +33,22 @@ export default function Pagination({ currentPage, total }: Props) {
   return (
     <>
       <div className="flex items-end justify-end">
-        {currentPage > 1 && (
-          <NavigationButton action={() => navigate(1)} label="1" />
-        )}
+        {currentPage > 1 && <NavigationButton page={1} />}
         {pages.map((page) => {
-          return (
-            <NavigationButton
-              key={page.toString()}
-              action={() => navigate(page)}
-              label={page.toString()}
-            />
-          );
+          return <NavigationButton key={page.toString()} page={page} />;
         })}
-        {currentPage < total && (
-          <NavigationButton
-            action={() => navigate(total)}
-            label={total.toString()}
-          />
-        )}
+        {currentPage < total && <NavigationButton page={total} />}
       </div>
     </>
   );
 }
 
-function NavigationButton({
-  label,
-  action,
-}: {
-  label: string;
-  action: () => void;
-}) {
+function NavigationButton({ page }: PaginationButtonProps) {
   return (
-    <div
-      onClick={action}
-      className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500"
-    >
-      <p className="text-xs">{label}</p>
+    <div className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500">
+      <Link href={""} className="text-xs">
+        {page}
+      </Link>
     </div>
   );
 }

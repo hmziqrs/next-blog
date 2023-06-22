@@ -1,19 +1,34 @@
-import { PostsArgs, PostsArgsIndexes, PostsSorts } from "./types";
+import { Post } from "types";
+import {
+  PostsArgs,
+  PostsArgsIndexes,
+  PostsArgsKeys,
+  PostsSorts,
+} from "./types";
 import { categories } from "lib/categories";
+import { getEnv, getSafePageNo } from "utils";
 
-// export function parsePostsPages(
-//   posts: Post[],
-//   rawCurrentPage: PostsProps["params"]["slug"]
-// ) {
-//   const total = posts.length;
-//   const { PER_PAGE } = getEnv();
-//   const max = Math.ceil(total / PER_PAGE);
-//   const currentPage = getSafePageNo(max, rawCurrentPage);
-//   const offset = (currentPage - 1) * PER_PAGE;
-//   const paginated = posts.slice(offset, currentPage * PER_PAGE);
+export function paginatePosts(posts: Post[], rawCurrentPage: number) {
+  const total = posts.length;
+  const { PER_PAGE } = getEnv();
+  const max = Math.ceil(total / PER_PAGE);
+  const currentPage = getSafePageNo(max, rawCurrentPage);
+  const offset = (currentPage - 1) * PER_PAGE;
+  const paginated = posts.slice(offset, currentPage * PER_PAGE);
 
-//   return { paginated, max, currentPage };
-// }
+  return { paginated, max, currentPage };
+}
+
+export function getParamsFromArgsIndexes(
+  key: PostsArgsKeys,
+  value: string,
+  args: PostsArgs,
+  indexes: PostsArgsIndexes
+) {
+  const newArgs = { ...args, [key]: value };
+  const params = buildParamsFromIndexes(newArgs, indexes);
+  return `/posts/${params.join("/")}`;
+}
 
 export function buildParamsFromIndexes(
   args: PostsArgs,

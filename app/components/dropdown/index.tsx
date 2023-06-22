@@ -1,12 +1,16 @@
+"use client";
+
 import { cx } from "alias";
 import { startCase } from "lodash";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface DropdownProps {
   title: string;
   items: string[];
   selected?: string;
-  onSelect: (item: string) => void;
+  links?: string[];
+  onSelect?: (item: string) => void;
 }
 
 export default function Dropdown({
@@ -14,8 +18,10 @@ export default function Dropdown({
   items,
   selected,
   onSelect,
+  links,
 }: DropdownProps) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="relative inline-block text-left">
@@ -64,14 +70,20 @@ export default function Dropdown({
           aria-orientation="vertical"
           aria-labelledby="options-menu"
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <div
               key={item}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-zinc-700 hover:text-white cursor-pointer transition-all duration-300"
               role="menuitem"
               onClick={() => {
                 setOpen(false);
-                onSelect(item);
+                if (onSelect) {
+                  onSelect(item);
+                  return;
+                }
+                if (links) {
+                  router.push(links[index]);
+                }
               }}
             >
               {startCase(item)}

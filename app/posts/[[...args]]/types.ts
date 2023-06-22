@@ -1,3 +1,10 @@
+interface PostsArgsAndIndexes {
+  args: PostsArgs;
+  indexes: PostsArgsIndexes;
+}
+
+export type PostsFiltersProps = PostsArgsAndIndexes;
+
 export interface PostsProps {
   params: {
     args?: string[];
@@ -15,6 +22,8 @@ export interface PostsArgsIndexes {
   category: number;
   sort: number;
 }
+
+export type PostsArgsKeys = keyof PostsArgs;
 
 export const PostsSorts = ["latest", "oldest", "most-viewed"];
 
