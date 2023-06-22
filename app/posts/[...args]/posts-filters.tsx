@@ -20,11 +20,21 @@ export default function PostsFilters({
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
   const router = useRouter();
 
-  const onSortSelect = (sort: string) => {
+  function navigate(newParams: string[]) {
+    router.push(`/posts/${newParams.join("/")}`);
+  }
+
+  function onSortSelect(sort: string) {
     const newParams = [...params.args];
     newParams[indexes.sort] = sort;
-    router.push(`/posts/${newParams.join("/")}`);
-  };
+    navigate(newParams);
+  }
+
+  function onCategorySelect(category: string) {
+    const newParams = [...params.args];
+    newParams[indexes.category] = category;
+    navigate(newParams);
+  }
 
   return (
     <div className="flex flex-row justify-between items-end">
@@ -37,6 +47,7 @@ export default function PostsFilters({
             return (
               <div
                 key={category.key}
+                onClick={() => onCategorySelect(category.key)}
                 className={cx(
                   "px-4 py-2  cursor-pointer rounded-md shadow shadow-white/0",
                   "hover:bg-zinc-700 transition-all duration-300  hover:shadow-lg hover:shadow-white/5",

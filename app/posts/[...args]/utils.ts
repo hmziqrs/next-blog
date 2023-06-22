@@ -50,9 +50,15 @@ export function parseArgs(rawArgs: string[]) {
   }
   if (!args.category) {
     args.category = "all";
+    if (!argsIndex.category) {
+      argsIndex.category = Object.keys(argsIndex).length;
+    }
   }
   if (!args.sort) {
     args.sort = "latest";
+    if (!argsIndex.sort) {
+      argsIndex.sort = Object.keys(argsIndex).length;
+    }
   }
   if (!args.page) {
     args.page = 1;
