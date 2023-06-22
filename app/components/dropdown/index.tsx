@@ -1,6 +1,7 @@
 "use client";
 
 import { cx } from "alias";
+import Button from "components/button";
 import { startCase } from "lodash";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -26,14 +27,7 @@ export default function Dropdown({
   return (
     <div className="relative inline-block text-left">
       <div>
-        <button
-          type="button"
-          className={cx(
-            "inline-flex flex-row justify-between items-center w-full",
-            "px-4 py-2 cursor-pointer rounded-md shadow shadow-white/0",
-            "hover:bg-zinc-700 transition-all duration-300  hover:shadow-lg hover:shadow-white/5",
-            open ? "bg-zinc-700" : "bg-zinc-800"
-          )}
+        <Button
           id="options-menu"
           aria-haspopup="true"
           aria-expanded="true"
@@ -55,7 +49,7 @@ export default function Dropdown({
               clipRule="evenodd"
             />
           </svg>
-        </button>
+        </Button>
       </div>
       <div
         className={cx(
