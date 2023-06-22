@@ -5,9 +5,9 @@ export interface PostsProps {
 }
 
 export interface PostsArgs {
-  page?: number;
-  category?: string;
-  sort?: SortType;
+  page: number;
+  category: string;
+  sort: SortType;
 }
 
 export interface PostsArgsIndex {
@@ -16,6 +16,6 @@ export interface PostsArgsIndex {
   sort: number;
 }
 
-export const PostsSorts = ["latest", "oldest", "most-viewed"] as const;
+export const PostsSorts = ["latest", "oldest", "most-viewed"];
 
 export type SortType = (typeof PostsSorts)[number];

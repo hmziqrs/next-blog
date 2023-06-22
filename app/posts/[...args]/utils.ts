@@ -21,13 +21,14 @@ export function parseArgs(rawArgs: string[]) {
 
   for (let index = 0; index < rawArgs.length; index++) {
     const rawArg = rawArgs[index].toLowerCase();
-    const categoryCheck = categories.find(
-      (cat) => cat.key === rawArg.toLowerCase()
+    const categoryKeys = ["all", ...categories.map((cat) => cat.key)];
+    const categoryCheck = categoryKeys.find(
+      (cat) => cat === rawArg.toLowerCase()
     );
     const sortCheck = PostsSorts.find((sort) => sort === rawArg.toLowerCase());
     if (categoryCheck) {
       argsIndex.category = index;
-      args.category = categoryCheck.key;
+      args.category = categoryCheck;
       continue;
     }
 
@@ -46,6 +47,9 @@ export function parseArgs(rawArgs: string[]) {
     } catch (e) {
       console.error(e);
     }
+  }
+  if (!args.category) {
+    args.category = "all";
   }
   if (!args.sort) {
     args.sort = "latest";
