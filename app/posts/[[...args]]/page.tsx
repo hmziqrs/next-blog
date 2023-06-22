@@ -38,8 +38,13 @@ export default async function Home({ params }: PostsProps) {
           return <PostCard key={index.toString()} post={post} />;
         })}
       </div>
-      <div className="h-4" />
-      <Pagination currentPage={currentPage} total={max} />
+      <div className="h-8" />
+      <Pagination
+        total={max}
+        args={args}
+        indexes={indexes}
+        currentPage={currentPage}
+      />
       <div className="h-8" />
     </Container>
   );

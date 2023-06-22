@@ -1,15 +1,13 @@
 import Link from "next/link";
+import { PostsPaginationButtonProps, PostsPaginationProps } from "./types";
+import { getParamsFromArgsIndexes } from "./utils";
 
-interface PaginationProps {
-  currentPage: number;
-  total: number;
-}
-
-interface PaginationButtonProps {
-  page: number;
-}
-
-export default function Pagination({ currentPage, total }: PaginationProps) {
+export default function Pagination({
+  args,
+  indexes,
+  currentPage,
+  total,
+}: PostsPaginationProps) {
   const rawPages = new Array(Math.min(3, total));
   const pages = rawPages
     .fill(0)
@@ -33,22 +31,35 @@ export default function Pagination({ currentPage, total }: PaginationProps) {
   return (
     <>
       <div className="flex items-end justify-end">
-        {currentPage > 1 && <NavigationButton page={1} />}
+        {currentPage > 1 && (
+          <NavigationButton page={1} args={args} indexes={indexes} />
+        )}
         {pages.map((page) => {
-          return <NavigationButton key={page.toString()} page={page} />;
+          return (
+            <NavigationButton
+              key={page.toString()}
+              page={page}
+              args={args}
+              indexes={indexes}
+            />
+          );
         })}
-        {currentPage < total && <NavigationButton page={total} />}
+        {currentPage < total && (
+          <NavigationButton page={total} args={args} indexes={indexes} />
+        )}
       </div>
     </>
   );
 }
 
-function NavigationButton({ page }: PaginationButtonProps) {
+function NavigationButton({ page, args, indexes }: PostsPaginationButtonProps) {
+  const link = getParamsFromArgsIndexes("page", `${page}`, args, indexes);
   return (
-    <div className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500">
-      <Link href={""} className="text-xs">
-        {page}
-      </Link>
-    </div>
+    <Link
+      href={link}
+      className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500"
+    >
+      <span className="text-xs">{page}</span>
+    </Link>
   );
 }
