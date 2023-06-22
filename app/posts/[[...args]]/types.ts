@@ -1,6 +1,6 @@
 export interface PostsProps {
   params: {
-    args: string[];
+    args?: string[];
   };
 }
 

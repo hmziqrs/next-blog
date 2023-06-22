@@ -29,7 +29,7 @@ export default async function Home({ params }: PostsProps) {
 
   return (
     <Container>
-      <PostsFilters args={args} params={params} indexes={indexes} />
+      <PostsFilters args={args} indexes={indexes} />
       <div className="h-8" />
       <div className="grid grid-cols-2 gap-4">
         {fakePosts.map((post, index) => {

@@ -15,6 +15,18 @@ import { categories } from "lib/categories";
 //   return { paginated, max, currentPage };
 // }
 
+export function buildParamsFromIndexes(
+  args: PostsArgs,
+  indexes: PostsArgsIndexes
+) {
+  const params = new Array(Object.keys(indexes).length).fill("");
+  Object.keys(indexes).forEach((key) => {
+    const index = indexes[key as keyof PostsArgsIndexes];
+    params[index] = args[key as keyof PostsArgs];
+  });
+  return params;
+}
+
 export function parseArgs(rawArgs: string[] = []) {
   const args = {} as PostsArgs;
   const argsIndex = {} as PostsArgsIndexes;
