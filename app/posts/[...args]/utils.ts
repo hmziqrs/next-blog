@@ -1,4 +1,4 @@
-import { PostsArgs, PostsArgsIndex, PostsSorts } from "./types";
+import { PostsArgs, PostsArgsIndexes, PostsSorts } from "./types";
 import { categories } from "lib/categories";
 
 // export function parsePostsPages(
@@ -17,7 +17,7 @@ import { categories } from "lib/categories";
 
 export function parseArgs(rawArgs: string[]) {
   const args = {} as PostsArgs;
-  const argsIndex = {} as PostsArgsIndex;
+  const argsIndex = {} as PostsArgsIndexes;
 
   for (let index = 0; index < rawArgs.length; index++) {
     const rawArg = rawArgs[index].toLowerCase();

@@ -1,19 +1,29 @@
 "use client";
 
 import { categories } from "lib/categories";
-import { PostsArgs, PostsSorts } from "./types";
+import { PostsArgs, PostsArgsIndexes, PostsProps, PostsSorts } from "./types";
 import Dropdown from "components/dropdown";
 import { cx } from "alias";
+import { useRouter } from "next/navigation";
 
 interface PostsFiltersProps {
   args: PostsArgs;
+  indexes: PostsArgsIndexes;
+  params: PostsProps["params"];
 }
 
-export default function PostsFilters({ args }: PostsFiltersProps) {
+export default function PostsFilters({
+  args,
+  params,
+  indexes,
+}: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
+  const router = useRouter();
 
   const onSortSelect = (sort: string) => {
-    console.log(sort);
+    const newParams = [...params.args];
+    newParams[indexes.sort] = sort;
+    router.push(`/posts/${newParams.join("/")}`);
   };
 
   return (

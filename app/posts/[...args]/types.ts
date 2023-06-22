@@ -10,7 +10,7 @@ export interface PostsArgs {
   sort: SortType;
 }
 
-export interface PostsArgsIndex {
+export interface PostsArgsIndexes {
   page: number;
   category: number;
   sort: number;

@@ -33,7 +33,7 @@ export default async function Home({ params }: PostsProps) {
   return (
     <Container>
       {/* <h1 className="text-3xl">Posts</h1> */}
-      <PostsFilters args={args} />
+      <PostsFilters args={args} params={params} indexes={indexes} />
     </Container>
   );
 }
