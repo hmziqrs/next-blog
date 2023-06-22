@@ -53,7 +53,7 @@ export default function Dropdown({
       </div>
       <div
         className={cx(
-          "origin-top-right absolute right-0 mt-2 w-56 rounded-md ",
+          "origin-top-right absolute right-0 mt-2 w-56 rounded-md z-20",
           "shadow-lg bg-white ring-1 ring-black ring-opacity-5",
           open ? "block" : "hidden"
         )}

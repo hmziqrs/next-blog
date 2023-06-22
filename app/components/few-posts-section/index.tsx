@@ -31,7 +31,13 @@ export async function FewPostsSection({
         <div className="h-4" />
         <div className="flex flex-row space-x-4">
           {posts.map((post) => {
-            return <PostCard key={post.getSlug()} post={post} />;
+            return (
+              <PostCard
+                key={post.getSlug()}
+                post={post}
+                className="max-w-[30%]"
+              />
+            );
           })}
         </div>
       </Container>

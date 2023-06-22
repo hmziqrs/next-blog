@@ -3,6 +3,7 @@ import { PostsProps } from "./types";
 import { parseArgs } from "./utils";
 import Container from "components/container";
 import PostsFilters from "./posts-filters";
+import PostCard from "components/post-card";
 
 export const dynamic = "error";
 export const revalidate = false;
@@ -32,8 +33,14 @@ export default async function Home({ params }: PostsProps) {
 
   return (
     <Container>
-      {/* <h1 className="text-3xl">Posts</h1> */}
       <PostsFilters args={args} params={params} indexes={indexes} />
+      <div className="h-8" />
+      <div className="grid grid-cols-2 gap-4">
+        {fakePosts.map((post, index) => {
+          return <PostCard key={index.toString()} post={post} />;
+        })}
+      </div>
+      <div className="h-8" />
     </Container>
   );
 }

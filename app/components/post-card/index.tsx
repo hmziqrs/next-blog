@@ -19,7 +19,6 @@ export default function PostCard({ post, className }: PostCardProps) {
       className={cx(
         "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer ",
         "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow",
-        "max-w-[30%]",
         className
       )}
     >
