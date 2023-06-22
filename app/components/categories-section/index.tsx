@@ -2,6 +2,7 @@ import Container from "components/container";
 import { categories } from "lib/categories";
 import { cx } from "alias";
 import { getAsset } from "utils";
+import Link from "next/link";
 
 export default function CategoriesSection() {
   return (
@@ -11,7 +12,8 @@ export default function CategoriesSection() {
       <div className="flex flex-row space-x-6">
         {categories.map((category) => {
           return (
-            <div
+            <Link
+              href={`/posts/${category.key}`}
               key={category.key}
               className={
                 "group bg-red-500 flex-1 h-80 relative cursor-pointer rounded-2xl overflow-clip"
@@ -40,7 +42,7 @@ export default function CategoriesSection() {
                 <div className="h-2" />
                 <p className="text-center text-sm ">{category.short}</p>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

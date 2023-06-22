@@ -15,7 +15,7 @@ import { categories } from "lib/categories";
 //   return { paginated, max, currentPage };
 // }
 
-export function parseArgs(rawArgs: string[]) {
+export function parseArgs(rawArgs: string[] = []) {
   const args = {} as PostsArgs;
   const argsIndex = {} as PostsArgsIndexes;
 

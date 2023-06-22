@@ -82,7 +82,6 @@ export default function MatrixCanvas() {
     const debounced = debounce(reset, 400);
     window.addEventListener("resize", debounced);
     return () => {
-      console.log("removing listener");
       window.removeEventListener("resize", debounced);
     };
   }, [path]);

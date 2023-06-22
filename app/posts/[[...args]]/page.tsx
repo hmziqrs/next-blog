@@ -23,13 +23,9 @@ export { dynamicParams };
 
 export default async function Home({ params }: PostsProps) {
   const data = await fetchPosts();
-
   const { args, indexes } = parseArgs(params.args);
-  console.log(args, indexes);
 
   const fakePosts = new Array(10).fill(data[0]);
-
-  console.log(fakePosts.length);
 
   return (
     <Container>

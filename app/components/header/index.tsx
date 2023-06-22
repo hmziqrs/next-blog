@@ -2,7 +2,7 @@ import Container from "components/container";
 import Logo from "components/logo";
 import Link from "next/link";
 
-const links = ["About", "Contact"];
+const links = ["About", "posts"];
 
 export default function Header() {
   return (
