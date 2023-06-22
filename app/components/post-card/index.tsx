@@ -3,6 +3,7 @@ import { sortBy } from "lodash";
 import { Post } from "types";
 import { getAsset } from "utils";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PostCardProps {
   post: Post;
@@ -15,7 +16,8 @@ export default function PostCard({ post, className }: PostCardProps) {
   const tags = sortBy(file.data.tags, (tag) => tag.length);
 
   return (
-    <div
+    <Link
+      href={post.getSlug()}
       className={cx(
         "bg-zinc-900 rounded-lg shadow-lg relative overflow-clip cursor-pointer ",
         "hover:shadow-lg hover:shadow-white/10 transition-all duration-300 shadow-white/5 shadow",
@@ -44,6 +46,6 @@ export default function PostCard({ post, className }: PostCardProps) {
         })}
       </div>
       <div className="h-2" />
-    </div>
+    </Link>
   );
 }

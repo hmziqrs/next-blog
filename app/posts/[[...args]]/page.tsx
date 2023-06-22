@@ -24,8 +24,8 @@ export { dynamicParams };
 
 export default async function Home({ params }: PostsProps) {
   const data = await fetchPosts();
-  const { args, indexes } = parseArgs(params.args);
 
+  const { args, indexes } = parseArgs(params.args);
   const fakePosts = new Array(100).fill(data[0]);
   const { currentPage, max, paginated } = paginatePosts(fakePosts, args.page);
 
