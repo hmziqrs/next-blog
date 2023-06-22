@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PostsPaginationButtonProps, PostsPaginationProps } from "./types";
 import { getParamsFromArgsIndexes } from "./utils";
+import Button from "components/button";
 
 export default function Pagination({
   args,
@@ -30,7 +31,7 @@ export default function Pagination({
 
   return (
     <>
-      <div className="flex items-end justify-end">
+      <div className="flex items-end justify-end space-x-2">
         {currentPage > 1 && (
           <NavigationButton page={1} args={args} indexes={indexes} />
         )}
@@ -57,9 +58,12 @@ function NavigationButton({ page, args, indexes }: PostsPaginationButtonProps) {
   return (
     <Link
       href={link}
-      className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500"
+
+      // className="border-2 w-10 h-10 flex items-center justify-center cursor-pointer mx-2 rounded-lg border-zinc-700 hover:border-zinc-600 transition-all duration-500"
     >
-      <span className="text-xs">{page}</span>
+      <Button className="w-12">
+        <span>{page}</span>
+      </Button>
     </Link>
   );
 }
