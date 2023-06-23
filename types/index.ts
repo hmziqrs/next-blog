@@ -26,6 +26,10 @@ export class Post implements PostInterface {
     return "post/" + this.name + suffix;
   }
 
+  getFiles(): PostFileInterface[] {
+    return Object.values(this.files);
+  }
+
   public getPostFile(lang?: string): PostFileInterface {
     const langKey = lang;
     const defaultLangKey = "en";

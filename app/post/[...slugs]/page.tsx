@@ -16,9 +16,17 @@ export { dynamicParams };
 
 export async function generateStaticParams() {
   const data = await fetchPosts();
-  return data.map((post) => {
+  const slugs: string[][] = [];
+  data.forEach((post) => {
+    slugs.push([post.name]);
+    for (const translation of post.translations) {
+      slugs.push([post.name, translation]);
+    }
+  });
+
+  return slugs.map((slugs) => {
     return {
-      slug: [post.name],
+      slugs,
     };
   });
 }
