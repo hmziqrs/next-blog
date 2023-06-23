@@ -32,19 +32,25 @@ export function getSafeArgs(newArgs: Partial<PostsArgs>): PostsArgs {
   };
 }
 
-export function getPostsPath(newArgs: Partial<PostsArgs>): string {
+export function getArgsArray(args: PostsArgs): string[] {
   const indexes: PostsArgsIndexes = {
     category: 0,
     sort: 1,
     page: 2,
   };
-  const args: PostsArgs = getSafeArgs(newArgs);
   const params = new Array(Object.keys(indexes).length).fill("");
   for (const [key, value] of Object.entries(args)) {
     const index = indexes[key as keyof PostsArgs];
     if (index === undefined) continue;
     params[index] = value as string;
   }
+
+  return params;
+}
+
+export function getPostsPath(newArgs: Partial<PostsArgs>): string {
+  const args: PostsArgs = getSafeArgs(newArgs);
+  const params = getArgsArray(args);
 
   const path = `/posts/${params.join("/")}`;
   return path;

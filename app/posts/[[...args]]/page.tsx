@@ -5,22 +5,43 @@ import Container from "components/container";
 import PostsFilters from "./posts-filters";
 import PostCard from "components/post-card";
 import Pagination from "./pagination";
+import { categories } from "lib/categories";
+import { PostsSorts } from "types";
+import { getArgsArray } from "utils";
 
 export const dynamic = "error";
 export const revalidate = false;
 const dynamicParams = false;
 export { dynamicParams };
 
-// export async function generateStaticParams() {
-//   const data = await fetchPosts();
-//   const { max } = parsePages(data, "1");
+export async function generateStaticParams() {
+  const data = await fetchPosts();
+  const categoryKeys = ["all", ...categories.map((category) => category.key)];
+  const pages: string[][] = [];
 
-//   const pages = new Array(max)
-//     .fill(0)
-//     .map((_, index) => (index + 1).toString());
+  const fakeData = new Array(100).fill(data[0]);
 
-//   return pages.map((slug) => ({ slug }));
-// }
+  categoryKeys.forEach((category) => {
+    PostsSorts.forEach((sort) => {
+      const args = { category, sort };
+      const { max } = paginatePosts(fakeData, 1);
+      for (let page = 1; page <= max; page++) {
+        const params = getArgsArray({ ...args, page });
+        pages.push(params);
+      }
+    });
+  });
+
+  const parsed = pages.map((args) => {
+    return {
+      args: args.map((v) => v.toString()),
+    };
+  });
+
+  console.log(parsed);
+
+  return parsed;
+}
 
 export default async function Home({ params }: PostsProps) {
   const data = await fetchPosts();

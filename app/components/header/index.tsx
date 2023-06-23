@@ -1,8 +1,12 @@
 import Container from "components/container";
 import Logo from "components/logo";
 import Link from "next/link";
+import { getPostsPath } from "utils";
 
-const links = ["About", "posts"];
+const links = [
+  { label: "About", href: "/about" },
+  { label: "Posts", href: getPostsPath({}) },
+];
 
 export default function Header() {
   return (
@@ -13,11 +17,11 @@ export default function Header() {
           {links.map((link) => {
             return (
               <Link
-                key={link}
-                href={link.toLowerCase()}
+                key={link.label}
+                href={link.href}
                 className="bg-red-900 py-2 px-5 rounded"
               >
-                <p>{link}</p>
+                <p>{link.label}</p>
               </Link>
             );
           })}
