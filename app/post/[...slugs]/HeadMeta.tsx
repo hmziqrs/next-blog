@@ -1,6 +1,6 @@
-import { PostFile } from "types";
+import { PostFileInterface } from "types";
 
-export default function HeadMeta(postFile: PostFile) {
+export default function HeadMeta(postFile: PostFileInterface) {
   return (
     <>
       <title>{postFile.data.title}</title>

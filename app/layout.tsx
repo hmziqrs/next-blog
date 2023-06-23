@@ -1,7 +1,9 @@
 import "./globals.css";
 
 import { Montserrat } from "next/font/google";
-import Header from "./app-header";
+import Header from "components/header";
+import MatrixCanvas from "components/matrix-canvas";
+import Footer from "./components/footer";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -19,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={font.variable}>
       <body className="bg-zinc-900 h-screen">
-        <main className="mx-auto md:max-w-3xl px-4 sm:px-6 lg:px-0">
+        <MatrixCanvas />
+        <main className="relative min-h-screen">
           <Header />
-          {children}
+          <div className="min-h-[calc(100vh-240px)]">{children}</div>
+          <Footer />
         </main>
       </body>
     </html>
