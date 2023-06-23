@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import fse from "fs-extra";
 import simpleGit from "simple-git";
 
 const DATA_DIR = "data-repo";
@@ -28,9 +27,10 @@ async function main() {
     await git.cwd(DATA_DIR).pull();
     console.log("Pulled latest changes");
 
+    // This piece is archived since we are directly using the content from the data repo
     // Copy content from data repo to posts directory
-    console.log("Copying content...");
-    fse.copySync(path.join(DATA_DIR, "src", "content"), "posts");
+    // console.log("Copying content...");
+    // fse.copySync(path.join(DATA_DIR, "src", "content"), "posts");
   } catch (e) {
     console.log(e);
   }
