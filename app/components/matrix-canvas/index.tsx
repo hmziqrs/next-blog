@@ -2,7 +2,7 @@
 
 import { debounce } from "lodash";
 import { usePathname } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
 const katakana =
   "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
@@ -21,7 +21,7 @@ export default function MatrixCanvas() {
     return document.getElementById("hero-canvas") as HTMLCanvasElement;
   }
 
-  function initCanvas() {
+  const initCanvas = useCallback(function initCanvas() {
     const canvas = getCanvas();
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     canvas.width = document.body.clientWidth;
@@ -61,16 +61,16 @@ export default function MatrixCanvas() {
     }
 
     intervalRef.current = setInterval(draw, 60);
-  }
+  }, []);
 
-  function clearCanvas() {
+  const clearCanvas = useCallback(function clearCanvas() {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
     const canvas = getCanvas();
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
+  }, []);
 
   useLayoutEffect(() => {
     if (!pathsToRender.includes(path)) return;
@@ -84,7 +84,7 @@ export default function MatrixCanvas() {
     return () => {
       window.removeEventListener("resize", debounced);
     };
-  }, [path]);
+  }, [path, initCanvas, clearCanvas]);
 
   useEffect(() => {
     if (!pathsToRender.includes(path)) {
@@ -98,7 +98,7 @@ export default function MatrixCanvas() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [path]);
+  }, [path, initCanvas, clearCanvas]);
 
   if (!pathsToRender.includes(path)) {
     return null;
