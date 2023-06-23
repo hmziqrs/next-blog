@@ -25,13 +25,13 @@ export { dynamicParams };
 export default async function Home({ params }: PostsProps) {
   const data = await fetchPosts();
 
-  const { args, indexes } = parseArgs(params.args);
+  const args = parseArgs(params.args);
   const fakePosts = new Array(100).fill(data[0]);
   const { currentPage, max, paginated } = paginatePosts(fakePosts, args.page);
 
   return (
     <Container>
-      <PostsFilters args={args} indexes={indexes} />
+      <PostsFilters args={args} />
       <div className="h-8" />
       <div className="grid grid-cols-2 gap-4">
         {paginated.map((post, index) => {
@@ -39,12 +39,7 @@ export default async function Home({ params }: PostsProps) {
         })}
       </div>
       <div className="h-8" />
-      <Pagination
-        total={max}
-        args={args}
-        indexes={indexes}
-        currentPage={currentPage}
-      />
+      <Pagination total={max} args={args} currentPage={currentPage} />
       <div className="h-8" />
     </Container>
   );

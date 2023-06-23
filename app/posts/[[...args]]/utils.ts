@@ -1,12 +1,6 @@
-import { Post } from "types";
-import {
-  PostsArgs,
-  PostsArgsIndexes,
-  PostsArgsKeys,
-  PostsSorts,
-} from "./types";
+import { Post, PostsArgs, PostsSorts } from "types";
 import { categories } from "lib/categories";
-import { getEnv, getSafePageNo } from "utils";
+import { getEnv, getSafeArgs, getSafePageNo } from "utils";
 
 export function paginatePosts(posts: Post[], rawCurrentPage: number) {
   const total = posts.length;
@@ -19,55 +13,30 @@ export function paginatePosts(posts: Post[], rawCurrentPage: number) {
   return { paginated, max, currentPage };
 }
 
-export function getParamsFromArgsIndexes(
-  key: PostsArgsKeys,
-  value: string,
-  args: PostsArgs,
-  indexes: PostsArgsIndexes
-) {
-  const newArgs = { ...args, [key]: value };
-  const params = buildParamsFromIndexes(newArgs, indexes);
-  return `/posts/${params.join("/")}`;
-}
-
-export function buildParamsFromIndexes(
-  args: PostsArgs,
-  indexes: PostsArgsIndexes
-) {
-  const params = new Array(Object.keys(indexes).length).fill("");
-  Object.keys(indexes).forEach((key) => {
-    const index = indexes[key as keyof PostsArgsIndexes];
-    params[index] = args[key as keyof PostsArgs];
-  });
-  return params;
-}
-
 export function parseArgs(rawArgs: string[] = []) {
   const args = {} as PostsArgs;
-  const argsIndex = {} as PostsArgsIndexes;
 
   for (let index = 0; index < rawArgs.length; index++) {
     const rawArg = rawArgs[index].toLowerCase();
+
     const categoryKeys = ["all", ...categories.map((cat) => cat.key)];
     const categoryCheck = categoryKeys.find(
       (cat) => cat === rawArg.toLowerCase()
     );
     const sortCheck = PostsSorts.find((sort) => sort === rawArg.toLowerCase());
+
     if (categoryCheck) {
-      argsIndex.category = index;
       args.category = categoryCheck;
       continue;
     }
 
     if (sortCheck) {
-      argsIndex.sort = index;
       args.sort = sortCheck;
       continue;
     }
 
     try {
       const page = parseInt(rawArg);
-      argsIndex.page = index;
       if (page > 0) {
         args.page = page;
       }
@@ -75,23 +44,6 @@ export function parseArgs(rawArgs: string[] = []) {
       console.error(e);
     }
   }
-  if (!args.category) {
-    args.category = "all";
-    if (!argsIndex.category) {
-      argsIndex.category = Object.keys(argsIndex).length;
-    }
-  }
-  if (!args.sort) {
-    args.sort = "latest";
-    if (!argsIndex.sort) {
-      argsIndex.sort = Object.keys(argsIndex).length;
-    }
-  }
-  if (!args.page) {
-    args.page = 1;
-    if (!argsIndex.page) {
-      argsIndex.page = Object.keys(argsIndex).length;
-    }
-  }
-  return { args, indexes: argsIndex };
+
+  return getSafeArgs(args);
 }

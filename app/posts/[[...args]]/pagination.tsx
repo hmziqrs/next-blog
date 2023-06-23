@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { PostsPaginationButtonProps, PostsPaginationProps } from "./types";
-import { getParamsFromArgsIndexes } from "./utils";
 import Button from "components/button";
+import { getPostsPath } from "utils";
 
 export default function Pagination({
   args,
-  indexes,
   currentPage,
   total,
 }: PostsPaginationProps) {
@@ -32,29 +31,20 @@ export default function Pagination({
   return (
     <>
       <div className="flex items-end justify-end space-x-2">
-        {currentPage > 1 && (
-          <NavigationButton page={1} args={args} indexes={indexes} />
-        )}
+        {currentPage > 1 && <NavigationButton page={1} args={args} />}
         {pages.map((page) => {
           return (
-            <NavigationButton
-              key={page.toString()}
-              page={page}
-              args={args}
-              indexes={indexes}
-            />
+            <NavigationButton key={page.toString()} page={page} args={args} />
           );
         })}
-        {currentPage < total && (
-          <NavigationButton page={total} args={args} indexes={indexes} />
-        )}
+        {currentPage < total && <NavigationButton page={total} args={args} />}
       </div>
     </>
   );
 }
 
-function NavigationButton({ page, args, indexes }: PostsPaginationButtonProps) {
-  const link = getParamsFromArgsIndexes("page", `${page}`, args, indexes);
+function NavigationButton({ page, args }: PostsPaginationButtonProps) {
+  const link = getPostsPath({ ...args, page });
   return (
     <Link
       href={link}

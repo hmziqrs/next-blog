@@ -1,4 +1,4 @@
-import { Env } from "types";
+import { Env, PostsArgs, PostsArgsIndexes } from "types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getSafePageNo(max: number, page?: any) {
@@ -21,4 +21,31 @@ export function getBlazeAsset(asset: string): string {
 
 export function getAsset(asset: string): string {
   return getBlazeAsset(asset);
+}
+
+export function getSafeArgs(newArgs: Partial<PostsArgs>): PostsArgs {
+  return {
+    category: "all",
+    sort: "latest",
+    page: 1,
+    ...newArgs,
+  };
+}
+
+export function getPostsPath(newArgs: Partial<PostsArgs>): string {
+  const indexes: PostsArgsIndexes = {
+    category: 0,
+    sort: 1,
+    page: 2,
+  };
+  const args: PostsArgs = getSafeArgs(newArgs);
+  const params = new Array(Object.keys(indexes).length).fill("");
+  for (const [key, value] of Object.entries(args)) {
+    const index = indexes[key as keyof PostsArgs];
+    if (index === undefined) continue;
+    params[index] = value as string;
+  }
+
+  const path = `/posts/${params.join("/")}`;
+  return path;
 }

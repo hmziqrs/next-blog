@@ -1,7 +1,7 @@
 import Container from "components/container";
 import { categories } from "lib/categories";
 import { cx } from "alias";
-import { getAsset } from "utils";
+import { getAsset, getPostsPath } from "utils";
 import Link from "next/link";
 
 export default function CategoriesSection() {
@@ -13,7 +13,7 @@ export default function CategoriesSection() {
         {categories.map((category) => {
           return (
             <Link
-              href={`/posts/${category.key}`}
+              href={getPostsPath({ category: category.key })}
               key={category.key}
               className={
                 "group bg-red-500 flex-1 h-80 relative cursor-pointer rounded-2xl overflow-clip"

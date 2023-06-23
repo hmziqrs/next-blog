@@ -1,5 +1,23 @@
 import { ReadTimeResults } from "reading-time";
 
+export interface PostsArgs {
+  page: number;
+  category: string;
+  sort: SortType;
+}
+
+export interface PostsArgsIndexes {
+  page: number;
+  category: number;
+  sort: number;
+}
+
+export type PostsArgsKeys = keyof PostsArgs;
+
+export const PostsSorts = ["latest", "oldest", "most-viewed"] as const;
+
+export type SortType = (typeof PostsSorts)[number];
+
 export interface PostInterface {
   name: string;
   translations: string[];

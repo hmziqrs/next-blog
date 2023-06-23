@@ -1,18 +1,18 @@
 import { categories } from "lib/categories";
-import { PostsSorts } from "./types";
 import Dropdown from "components/dropdown";
 import { PostsFiltersProps } from "./types";
-import { getParamsFromArgsIndexes } from "./utils";
 import Link from "next/link";
 import Button from "components/button";
+import { getPostsPath } from "utils";
+import { PostsSorts } from "types";
 
-export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
+export default function PostsFilters({ args }: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
   const sortLinks = PostsSorts.map((sort) => {
-    return getParamsFromArgsIndexes("sort", sort, args, indexes);
+    return getPostsPath({ ...args, sort, page: 1 });
   });
   const categoryLinks = categoriesToRender.map((category) => {
-    return getParamsFromArgsIndexes("category", category.key, args, indexes);
+    return getPostsPath({ ...args, category: category.key, page: 1 });
   });
 
   return (
@@ -33,8 +33,8 @@ export default function PostsFilters({ args, indexes }: PostsFiltersProps) {
       <Dropdown
         title="Sort"
         links={sortLinks}
-        items={PostsSorts}
         selected={args.sort}
+        items={[...PostsSorts]}
       />
     </div>
   );
