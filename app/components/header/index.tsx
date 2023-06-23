@@ -5,28 +5,29 @@ import { getPostsPath } from "utils";
 
 const links = [
   { label: "About", href: "/about" },
+  { label: "Connect", href: "/connect" },
   { label: "Posts", href: getPostsPath({}) },
 ];
 
 export default function Header() {
   return (
-    <Container>
-      <div className="py-6 flex flex-row items-center justify-between">
-        <Logo />
-        <div className="flex flex-row space-x-4">
-          {links.map((link) => {
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="bg-red-900 py-2 px-5 rounded"
-              >
-                <p>{link.label}</p>
-              </Link>
-            );
-          })}
+    <div className="bg-zinc-900">
+      <Container>
+        <div className="py-6 flex flex-row items-center justify-between">
+          <Logo />
+          <div className="flex flex-row space-x-4">
+            {links.map((link) => {
+              return (
+                <Link key={link.label} href={link.href} className="">
+                  <span className="underline underline-offset-4 text-lg">
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

@@ -14,6 +14,9 @@ module.exports = {
         sans: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
         mono: ["var(--font-montserrat)", ...defaultTheme.fontFamily.mono],
       },
+      colors: {
+        surface: "#181818",
+      },
     },
   },
   plugins: [
