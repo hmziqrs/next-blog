@@ -7,3 +7,11 @@ export const mainSocialLinks: SocialLink[] = [
   { url: "https://facebook.com", name: "Facebook", username: "@username" },
   { url: "https://twitter.com", name: "Twitter", username: "@username" },
 ];
+
+export const emailLinks: SocialLink[] = [
+  {
+    url: "mailto:email@google.com",
+    name: "Email",
+    username: "email@google.com",
+  },
+];

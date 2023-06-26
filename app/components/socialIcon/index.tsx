@@ -1,5 +1,6 @@
 import SVGInstagram from "components/svg/Instagram";
 import SVGFacebook from "components/svg/facebook";
+import SVGMail from "components/svg/mail";
 import SVGTiktok from "components/svg/tiktok";
 import SVGTwitter from "components/svg/twitter";
 import SVGYoutube from "components/svg/youtube";
@@ -21,6 +22,9 @@ export default function SocialIcon({ name, size }: SocialIconProps) {
   }
   if (name === "Facebook") {
     return <SVGFacebook width={size} height={size} />;
+  }
+  if (name === "Email") {
+    return <SVGMail width={size} height={size} fill="#fff" />;
   }
 
   return <SVGTwitter width={size} height={size} />;

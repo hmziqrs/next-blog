@@ -12,7 +12,12 @@ interface ConnectButtonsProps {
 
 export default function ConnectButtons({ link }: ConnectButtonsProps) {
   function copyToClipboard() {
-    navigator.clipboard.writeText(link.url);
+    const url = link.url
+      .replace("mailto:", "")
+      .replace("tel:", "")
+      .replace("sms:", "");
+
+    navigator.clipboard.writeText(url);
     toast.success("Copied to clipboard!");
     // toast.success("Copied to clipboard!");
   }
