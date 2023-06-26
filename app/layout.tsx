@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google";
 import Header from "components/header";
 import MatrixCanvas from "components/matrix-canvas";
 import Footer from "./components/footer";
+import { Toaster } from "react-hot-toast";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={font.variable}>
       <body className="bg-zinc-900 h-screen">
+        <Toaster />
         <MatrixCanvas />
         <main className="relative min-h-screen">
           <Header />

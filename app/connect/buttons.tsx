@@ -3,6 +3,7 @@
 import Button from "components/button";
 import SVGCopy from "components/svg/copy";
 import SVGShare from "components/svg/share";
+import { toast } from "react-hot-toast";
 import { SocialLink } from "types";
 
 interface ConnectButtonsProps {
@@ -12,9 +13,9 @@ interface ConnectButtonsProps {
 export default function ConnectButtons({ link }: ConnectButtonsProps) {
   function copyToClipboard() {
     navigator.clipboard.writeText(link.url);
+    toast.success("Copied to clipboard!");
+    // toast.success("Copied to clipboard!");
   }
-
-  const canShare = !!navigator.share;
 
   function share() {
     if (navigator.share) {
@@ -31,11 +32,11 @@ export default function ConnectButtons({ link }: ConnectButtonsProps) {
       <Button onClick={copyToClipboard}>
         <SVGCopy />
       </Button>
-      {canShare && (
+      {/* {canShare && (
         <Button onClick={share}>
           <SVGShare />
         </Button>
-      )}
+      )} */}
     </>
   );
 }
