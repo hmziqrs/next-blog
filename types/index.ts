@@ -86,3 +86,9 @@ export interface Env {
   PER_PAGE: number;
   BLAZE_BUCKET_URL: string;
 }
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  username: string;
+}

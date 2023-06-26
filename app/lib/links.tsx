@@ -1,7 +1,9 @@
-export const mainSocialLinks = [
-  { href: "https://youtube.com", label: "Youtube" },
-  { href: "https://instagram.com", label: "Instagram" },
-  { href: "https://tiktok.com", label: "Tiktok" },
-  { href: "https://facebook.com", label: "Facebook" },
-  { href: "https://twitter.com", label: "Twitter" },
+import { SocialLink } from "types";
+
+export const mainSocialLinks: SocialLink[] = [
+  { url: "https://youtube.com", name: "Youtube", username: "@username" },
+  { url: "https://instagram.com", name: "Instagram", username: "@username" },
+  { url: "https://tiktok.com", name: "Tiktok", username: "@username" },
+  { url: "https://facebook.com", name: "Facebook", username: "@username" },
+  { url: "https://twitter.com", name: "Twitter", username: "@username" },
 ];

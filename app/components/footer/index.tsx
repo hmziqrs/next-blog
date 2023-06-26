@@ -16,8 +16,8 @@ export default function Footer() {
         <div className="flex flex-row space-x-2">
           {mainSocialLinks.map((link) => {
             return (
-              <Link href={link.href} target="_blank" key={link.href}>
-                <SocialIcon name={link.label} size={32} />
+              <Link href={link.url} target="_blank" key={link.url}>
+                <SocialIcon name={link.name} size={32} />
               </Link>
             );
           })}
