@@ -1,5 +1,6 @@
 import Container from "components/container";
 import PostCard from "components/post-card";
+import { typography } from "lib/typography";
 import Link from "next/link";
 import { Post } from "types";
 
@@ -21,7 +22,7 @@ export async function FewPostsSection({
     <div className=" bg-black/60 py-12">
       <Container>
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-2xl">{label}</h2>
+          <h2 className={typography.subheading}>{label}</h2>
           {renderButton && (
             <Link href={buttonLink} className="font-medium underline">
               {buttonLabel}

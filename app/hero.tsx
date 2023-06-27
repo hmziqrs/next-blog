@@ -1,11 +1,12 @@
 "use client";
 
 import Container from "components/container";
+import { typography } from "lib/typography";
 import Typewriter from "typewriter-effect";
 
 const DELAY = {
   SHORT: 220,
-  LONG: 2000,
+  LONG: 1200,
 };
 
 export default function Hero() {
@@ -20,7 +21,7 @@ export default function Hero() {
             onInit={(typewriter) => {
               typewriter
                 .typeString(
-                  '<span class="text-3xl font-medium">Hey there!<span>'
+                  `<span class="${typography.heading} font-medium">Hey there!<span>`
                 )
                 .changeDelay(25)
                 .pauseFor(DELAY.LONG)

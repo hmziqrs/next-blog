@@ -9,7 +9,6 @@ export default function ConnectPage() {
   return (
     <Container>
       <div className="h-12" />
-      <h1 className="text-3xl text-center">Connect Social</h1>
       <div className="flex flex-col items-center space-y-4 py-4">
         {mainSocialLinks.concat(emailLinks).map((link) => {
           return (

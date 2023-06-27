@@ -1,17 +1,17 @@
 import Container from "components/container";
 import { releases } from "./data";
 import SVGCheck from "components/svg/check";
+import { typography } from "lib/typography";
 
 export default function RoadMapPage() {
   return (
     <Container>
-      {/* <h2 className="text-2xl">Road map</h2> */}
       <div className="h-2" />
       <div className=" space-y-4">
         {releases.map((release) => {
           return (
             <div key={release.version}>
-              <h3 className="text-2xl">
+              <h3 className={typography.subheading}>
                 {release.label}{" "}
                 <span className="font-bold">({release.version})</span>
               </h3>

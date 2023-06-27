@@ -8,6 +8,8 @@ import PostPrevNext from "./prev-next";
 import { getAsset } from "utils";
 import { categories } from "../../lib/categories";
 import PostCard from "components/post-card";
+import { cx } from "alias";
+import { typography } from "lib/typography";
 
 export const dynamic = "error";
 export const revalidate = false;
@@ -50,11 +52,14 @@ export default async function Page(props: PostProps) {
             className="h-[300px] object-cover"
           />
           <div className="mt-3" />
-          <h1 className="md:text-2xl text-lg font-medium">
-            {postFile.data.title}
-          </h1>
+          <h1 className="font-medium">{postFile.data.title}</h1>
           <div className="mt-1" />
-          <div className="flex flex-row flex-wrap text-zinc-400 lines text-sm md:text-base">
+          <div
+            className={cx(
+              "flex flex-row flex-wrap text-zinc-400 lines",
+              typography.small
+            )}
+          >
             {/* <p>{dayjs(postFile.stat.birthtime).format("MMM D, YYYY")}</p> */}
             <div className="mx-2" />
             <p>{Math.ceil(postFile.readTime.minutes)} minutes read</p>
@@ -70,7 +75,9 @@ export default async function Page(props: PostProps) {
           <div className="h-6" />
         </div>
         <div id="sidebar" className="flex flex-col">
-          <h2 className="text-lg font-medium">Explore more posts</h2>
+          <h2 className={cx("font-medium", typography.subheading)}>
+            Explore more posts
+          </h2>
           <div className="my-4 h-[1px] bg-zinc-700" />
           {categories.map((category) => {
             return (

@@ -2,6 +2,7 @@
 
 import { cx } from "alias";
 import Button from "components/button";
+import { typography } from "lib/typography";
 import { startCase } from "lodash";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -33,7 +34,7 @@ export default function Dropdown({
           aria-expanded="true"
           onClick={() => setOpen(!open)}
         >
-          <span className="text-sm">
+          <span className={typography.small}>
             {title}: {selected}
           </span>
           <svg
@@ -67,7 +68,11 @@ export default function Dropdown({
           {items.map((item, index) => (
             <div
               key={item}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-zinc-700 hover:text-white cursor-pointer transition-all duration-300"
+              className={cx(
+                "block px-4 py-2 cursor-pointer transition-all duration-300",
+                "text-gray-700 hover:bg-zinc-700 hover:text-white",
+                typography.small
+              )}
               role="menuitem"
               onClick={() => {
                 setOpen(false);
