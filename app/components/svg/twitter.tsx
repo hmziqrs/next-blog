@@ -1,20 +1,11 @@
-interface SVGTwitterProps extends React.SVGProps<SVGSVGElement> {
-  width?: number;
-  height?: number;
-}
+type SVGTwitterProps = React.SVGProps<SVGSVGElement>;
 
-export default function SVGTwitter({
-  width = 38,
-  height = 38,
-  ...props
-}: SVGTwitterProps) {
+export default function SVGTwitter({ ...props }: SVGTwitterProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width={width}
-      height={height}
       viewBox="0 0 48 48"
       {...props}
     >

@@ -1,20 +1,11 @@
-interface SVGTiktokProps extends React.SVGProps<SVGSVGElement> {
-  width?: number;
-  height?: number;
-}
+type SVGTiktokProps = React.SVGProps<SVGSVGElement>;
 
-export default function SVGTiktok({
-  width = 38,
-  height = 38,
-  ...props
-}: SVGTiktokProps) {
+export default function SVGTiktok({ ...props }: SVGTiktokProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width={width}
-      height={height}
       viewBox="0 0 48 48"
       {...props}
     >
