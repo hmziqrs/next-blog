@@ -30,7 +30,7 @@ export default function Dropdown({
   const router = useRouter();
 
   return (
-    <div className={cx("relative", className)}>
+    <div className={cx("relative select-none", className)}>
       <div>
         <Button
           id="options-menu"
