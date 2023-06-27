@@ -11,7 +11,7 @@ const nums = "0123456789";
 
 const chars = (katakana + latin + nums).split("");
 
-const pathsToRender = ["/", "/about", "/contact"];
+const pathsToRender = ["/", "/about", "/connect"];
 
 export default function MatrixCanvas() {
   const path = usePathname();

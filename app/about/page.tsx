@@ -1,7 +1,7 @@
 import Container from "components/container";
+import Link from "next/link";
 
 export default function AboutPage() {
-  // <a href="https://www.toptal.com/resume/hamza-iqbal">Toptal</a> as a
   const totalExperience = new Date().getFullYear() - 2017;
   return (
     <Container className="text-center">
@@ -11,7 +11,15 @@ export default function AboutPage() {
       <p>
         I{"'"}m from Karachi, Pakistan, and have been working as a software
         engineer for over {totalExperience} years. Currently, I am a freelancer
-        at Toptal, serving as a Senior Full-Stack Software Engineer.
+        at{" "}
+        <Link
+          target="_blank"
+          className="underline font-bold"
+          href={"https://www.toptal.com/resume/hamza-iqbal"}
+        >
+          Toptal
+        </Link>
+        , serving as a Senior Full-Stack Software Engineer.
         <br />
         <br />I have experience working on a variety of projects, ranging from
         small to large-scale applications. My expertise includes mobile
@@ -29,11 +37,13 @@ export default function AboutPage() {
         content writingI have always wanted to write about my experiences and
         share my knowledge with others. This blog is my attempt to do that. I
         hope you enjoy it. If you have any feedback, please feel free to reach
-        out to me via the contact page. <br />
+        out to me via the{" "}
+        <Link href="/connect" className="underline font-bold">
+          connect
+        </Link>{" "}
+        page. <br />
         <br />
         <b> Thank you for reading this. Have a great day! :)</b>
-        <br />
-        <b>Hamza Iqbal</b>
       </p>
     </Container>
   );
