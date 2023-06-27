@@ -32,7 +32,7 @@ export default function PostCard({ post, className }: PostCardProps) {
         height={100}
       />
       <div className="h-3" />
-      <h2 className="text-base line-clamp-2 px-4">{file.data.title}</h2>
+      <h2 className="line-clamp-2 px-4">{file.data.title}</h2>
       <div className="overflow-scroll py-2 px-4 space-x-2">
         {tags.map((tag) => {
           return (

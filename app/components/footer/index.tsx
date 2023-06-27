@@ -2,6 +2,7 @@ import { cx } from "alias";
 import Container from "components/container";
 import SocialIcon from "components/socialIcon";
 import { mainSocialLinks } from "lib/links";
+import { typography } from "lib/typography";
 import Link from "next/link";
 
 const webLinks = [
@@ -28,8 +29,9 @@ export default function Footer() {
               key={link.href}
               href={link.href}
               className={cx(
-                "text-sm text-center underline underline-offset-4",
-                "text-white/80 hover:text-white/100 transition-all"
+                "text-center underline underline-offset-4",
+                "text-white/80 hover:text-white/100 transition-all",
+                typography.small
               )}
             >
               <span>{link.label}</span>

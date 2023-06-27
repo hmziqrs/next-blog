@@ -3,11 +3,14 @@ import { categories } from "lib/categories";
 import { cx } from "alias";
 import { getAsset, getPostsPath } from "utils";
 import Link from "next/link";
+import { typography } from "lib/typography";
 
 export default function CategoriesSection() {
   return (
     <Container>
-      <h1 className="text-center text-4xl font-medium">Explore</h1>
+      <h1 className={cx("text-center font-medium", typography.heading)}>
+        Explore
+      </h1>
       <div className="h-8" />
       <div className="flex flex-row space-x-6">
         {categories.map((category) => {
@@ -38,9 +41,13 @@ export default function CategoriesSection() {
                 )}
               />
               <div className="relative h-full flex flex-col items-center py-28 px-4">
-                <h2 className="text-2xl text-center">{category.label}</h2>
+                <h2 className={cx("text-center", typography.subheading)}>
+                  {category.label}
+                </h2>
                 <div className="h-2" />
-                <p className="text-center text-sm ">{category.short}</p>
+                <p className={cx("text-center", typography.small)}>
+                  {category.short}
+                </p>
               </div>
             </Link>
           );

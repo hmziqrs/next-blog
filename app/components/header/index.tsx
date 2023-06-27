@@ -19,7 +19,7 @@ export default function Header() {
             {links.map((link) => {
               return (
                 <Link key={link.label} href={link.href} className="">
-                  <span className="underline underline-offset-4 text-lg">
+                  <span className="underline underline-offset-4">
                     {link.label}
                   </span>
                 </Link>

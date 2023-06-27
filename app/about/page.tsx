@@ -1,4 +1,5 @@
 import Container from "components/container";
+import { typography } from "lib/typography";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -6,7 +7,7 @@ export default function AboutPage() {
   return (
     <Container className="text-center">
       <div className="h-20" />
-      <h1 className="text-3xl">About me</h1>
+      <h1 className={typography.heading}>About me</h1>
       <div className="h-8" />
       <p>
         I{"'"}m from Karachi, Pakistan, and have been working as a software
@@ -28,7 +29,7 @@ export default function AboutPage() {
         React Native, Go, Node.js, MySQL, PostgreSQL, and many more.
       </p>
       <div className="h-20" />
-      <h1 className="text-3xl">Why this blog?</h1>
+      <h1 className={typography.heading}>Why this blog?</h1>
       <div className="h-8" />
       <p>
         As an engineer with strong problem-solving skills, I have often faced

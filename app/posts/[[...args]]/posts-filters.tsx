@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "components/button";
 import { getPostsPath } from "utils";
 import { PostsSorts } from "types";
+import { typography } from "lib/typography";
 
 export default function PostsFilters({ args }: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];
@@ -24,7 +25,7 @@ export default function PostsFilters({ args }: PostsFiltersProps) {
           return (
             <Link href={link} key={category.key}>
               <Button isSelected={isSelected}>
-                <p className="text-sm">{category.label}</p>
+                <p className={typography.small}>{category.label}</p>
               </Button>
             </Link>
           );
