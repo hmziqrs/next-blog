@@ -18,7 +18,7 @@ export default function Header() {
           <div className="flex flex-row space-x-4">
             {links.map((link) => {
               return (
-                <Link key={link.label} href={link.href} className="">
+                <Link key={link.label} href={link.href}>
                   <span className="underline underline-offset-4">
                     {link.label}
                   </span>
