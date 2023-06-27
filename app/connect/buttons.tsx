@@ -1,5 +1,4 @@
 "use client";
-
 import Button from "components/button";
 import SVGCopy from "components/svg/copy";
 import SVGShare from "components/svg/share";
@@ -22,6 +21,12 @@ export default function ConnectButtons({ link }: ConnectButtonsProps) {
     // toast.success("Copied to clipboard!");
   }
 
+  let canShare = false;
+
+  if (typeof window !== "undefined") {
+    canShare = !!window.navigator.share;
+  }
+
   function share() {
     if (navigator.share) {
       navigator.share({
@@ -37,11 +42,11 @@ export default function ConnectButtons({ link }: ConnectButtonsProps) {
       <Button onClick={copyToClipboard}>
         <SVGCopy />
       </Button>
-      {/* {canShare && (
+      {canShare && (
         <Button onClick={share}>
           <SVGShare />
         </Button>
-      )} */}
+      )}
     </>
   );
 }
