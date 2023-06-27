@@ -45,6 +45,7 @@ export default function AboutPage() {
         <br />
         <b> Thank you for reading this. Have a great day! :)</b>
       </p>
+      <div className="h-20" />
     </Container>
   );
 }
