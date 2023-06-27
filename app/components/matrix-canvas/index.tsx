@@ -11,7 +11,7 @@ const nums = "0123456789";
 
 const chars = (katakana + latin + nums).split("");
 
-const pathsToRender = ["/", "/about", "/connect"];
+const pathsToRender = ["/", "/about", "/connect", "/road-map"];
 
 export default function MatrixCanvas() {
   const path = usePathname();
@@ -29,8 +29,8 @@ export default function MatrixCanvas() {
 
     const fontSize = 12;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = new Array(columns).map(() => 0);
-    const started: boolean[] = drops.map(() => false);
+    const drops = new Array(columns).map(() => 0);
+    const started = drops.map(() => false);
 
     for (let x = 0; x < columns; x++) {
       drops[x] = 0;
@@ -87,9 +87,7 @@ export default function MatrixCanvas() {
   }, [path, initCanvas, clearCanvas]);
 
   useEffect(() => {
-    if (!pathsToRender.includes(path)) {
-      return;
-    }
+    if (!pathsToRender.includes(path)) return;
 
     initCanvas();
 

@@ -25,8 +25,7 @@ export default function AboutPage() {
         small to large-scale applications. My expertise includes mobile
         application development, web frontend and backend development. I have
         worked with a wide range of technologies, including Flutter, React,
-        React Native, Go, Node.js, Express.js, MongoDB, MySQL, PostgreSQL, and
-        many more.
+        React Native, Go, Node.js, MySQL, PostgreSQL, and many more.
       </p>
       <div className="h-20" />
       <h1 className="text-3xl">Why this blog?</h1>
