@@ -34,10 +34,10 @@ export const releases: Release[] = [
         done: true,
       },
       {
-        label: "Responsive design for mobile and web",
+        label: "Creating a consistent typography system",
       },
       {
-        label: "Creating a consistent typography system",
+        label: "Responsive design for mobile and web",
       },
       {
         label: "SEO integration for blogs",
