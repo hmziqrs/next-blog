@@ -13,6 +13,8 @@ interface DropdownProps {
   selected?: string;
   links?: string[];
   onSelect?: (item: string) => void;
+  className?: string;
+  position?: "left" | "right";
 }
 
 export default function Dropdown({
@@ -21,12 +23,14 @@ export default function Dropdown({
   selected,
   onSelect,
   links,
+  className,
+  position = "left",
 }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
   return (
-    <div className="relative inline-block text-left">
+    <div className={cx("relative", className)}>
       <div>
         <Button
           id="options-menu"
@@ -54,8 +58,9 @@ export default function Dropdown({
       </div>
       <div
         className={cx(
-          "origin-top-right absolute right-0 mt-2 w-56 rounded-md z-20",
+          "origin-top-right absolute mt-2 w-56 rounded-md z-20",
           "shadow-lg bg-white ring-1 ring-black ring-opacity-5",
+          position === "left" ? "left-0" : "right-0",
           open ? "block" : "hidden"
         )}
       >
