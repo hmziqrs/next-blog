@@ -44,15 +44,18 @@ export default async function Page(props: PostProps) {
       <HeadMeta {...postFile} />
       <Container className="flex flex-row space-x-6 items-stretch">
         <div id="post" className="flex flex-col flex-1 min-h-full">
-          <Image
-            src={bannerImage}
-            alt={postFile.data.title}
-            width="1200"
-            height="630"
-            className="h-[300px] object-cover"
-          />
+          <div className="relative h-72">
+            <Image
+              fill
+              src={bannerImage}
+              alt={postFile.data.title}
+              className="object-cover relative"
+            />
+          </div>
           <div className="mt-3" />
-          <h1 className="font-medium">{postFile.data.title}</h1>
+          <h1 className={cx("font-medium", typography.heading)}>
+            {postFile.data.title}
+          </h1>
           <div className="mt-1" />
           <div
             className={cx(
@@ -66,7 +69,7 @@ export default async function Page(props: PostProps) {
           </div>
           <div className="mt-8" />
           <div className="w-auto  block">
-            <article className="prose prose-invert">
+            <article className="article">
               <ReactMarkdown>{postFile.content}</ReactMarkdown>
             </article>
           </div>
