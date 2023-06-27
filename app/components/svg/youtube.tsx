@@ -1,4 +1,4 @@
-interface SVGYoutubeProps {
+interface SVGYoutubeProps extends React.SVGProps<SVGSVGElement> {
   width?: number;
   height?: number;
 }
@@ -6,6 +6,7 @@ interface SVGYoutubeProps {
 export default function SVGYoutube({
   width = 38,
   height = 38,
+  ...props
 }: SVGYoutubeProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export default function SVGYoutube({
       width={width}
       height={height}
       viewBox="0 0 48 48"
+      {...props}
     >
       <path
         fill="#FF3D00"

@@ -1,4 +1,4 @@
-interface SVGTwitterProps {
+interface SVGTwitterProps extends React.SVGProps<SVGSVGElement> {
   width?: number;
   height?: number;
 }
@@ -6,6 +6,7 @@ interface SVGTwitterProps {
 export default function SVGTwitter({
   width = 38,
   height = 38,
+  ...props
 }: SVGTwitterProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export default function SVGTwitter({
       width={width}
       height={height}
       viewBox="0 0 48 48"
+      {...props}
     >
       <path
         fill="#03A9F4"

@@ -1,17 +1,22 @@
 import { cx } from "alias";
 
-interface SVGDownArrowProps {
+interface SVGDownArrowProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
   fill?: string;
 }
 
-export default function SVGDownArrow({ className, fill }: SVGDownArrowProps) {
+export default function SVGDownArrow({
+  className,
+  fill,
+  ...props
+}: SVGDownArrowProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill={fill || "currentColor"}
       className={cx("h-5 w-5", className)}
+      {...props}
     >
       <path
         fillRule="evenodd"
