@@ -18,7 +18,7 @@ export default function PostPrevNext({ detail }: PostPrevNext) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
       {prev ? (
         <Link href={prev.getSlug()} className="block">
           <Button size="small" className={cx(typography.body)}>

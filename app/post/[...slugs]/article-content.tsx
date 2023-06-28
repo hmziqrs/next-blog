@@ -45,7 +45,7 @@ export default function PostArticleContent({
           className="object-cover relative"
         />
       </div>
-      <div className="h-8" />
+      <div className="h-6" />
       <h1 className={cx("font-medium", typography.heading)}>
         {postFile.data.title}
       </h1>
@@ -67,14 +67,14 @@ export default function PostArticleContent({
           );
         })}
       </div>
-
-      <div className="h-4" />
+      <div className="h-8" />
       <article id="article">
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {postFile.content}
         </ReactMarkdown>
       </article>
       <div className="flex flex-1" />
+      <div className="h-12" />
       <PostPrevNext detail={detail} />
     </div>
   );
