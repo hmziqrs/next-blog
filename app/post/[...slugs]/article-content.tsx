@@ -37,7 +37,7 @@ export default function PostArticleContent({
       id="post"
       className={cx("md:col-span-5", "flex flex-1 flex-col min-h-full")}
     >
-      <div className="relative h-72">
+      <div className="relative h-52 md:h-72">
         <Image
           fill
           src={bannerImage}
@@ -60,14 +60,14 @@ export default function PostArticleContent({
             <Button
               key={pill}
               size="small"
-              className={cx(typography.small, "font-medium text-zinc-300")}
+              className={cx(typography.tiny, "font-medium text-zinc-300 mb-3")}
             >
               {pill}
             </Button>
           );
         })}
       </div>
-      <div className="h-8" />
+      <div className="h-4" />
       <article id="article">
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {postFile.content}

@@ -16,7 +16,7 @@ export default function PostSidebar({ detail, className }: PostSidebarProps) {
         Explore more posts
       </h2>
       <div className="my-4 h-[1px] bg-zinc-700" />
-      <div className="grid grid-cols-2 gap-6 md:block md:space-y-6">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-1">
         {categories.map((category) => {
           return (
             <div key={category.key}>
