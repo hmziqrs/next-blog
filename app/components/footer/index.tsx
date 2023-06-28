@@ -12,7 +12,7 @@ const webLinks = [
 
 export default function Footer() {
   return (
-    <div className="bg-zinc-900 py-8">
+    <div className="bg-zinc-900 py-8 shadow-xl shadow-zinc-50/50">
       <Container className="flex flex-row justify-between items-center">
         <div className="flex flex-row space-x-4">
           {webLinks.map((link) => (
