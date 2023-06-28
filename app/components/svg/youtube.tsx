@@ -1,20 +1,13 @@
-interface SVGYoutubeProps {
-  width?: number;
-  height?: number;
-}
+type SVGYoutubeProps = React.SVGProps<SVGSVGElement>;
 
-export default function SVGYoutube({
-  width = 38,
-  height = 38,
-}: SVGYoutubeProps) {
+export default function SVGYoutube({ ...props }: SVGYoutubeProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width={width}
-      height={height}
       viewBox="0 0 48 48"
+      {...props}
     >
       <path
         fill="#FF3D00"

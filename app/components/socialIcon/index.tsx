@@ -5,27 +5,27 @@ import SVGTiktok from "components/svg/tiktok";
 import SVGTwitter from "components/svg/twitter";
 import SVGYoutube from "components/svg/youtube";
 
-interface SocialIconProps {
+interface SocialIconProps extends React.SVGProps<SVGSVGElement> {
   name: string;
   size?: number;
 }
 
-export default function SocialIcon({ name, size }: SocialIconProps) {
+export default function SocialIcon({ name, ...props }: SocialIconProps) {
   if (name === "Youtube") {
-    return <SVGYoutube width={size} height={size} />;
+    return <SVGYoutube {...props} />;
   }
   if (name === "Instagram") {
-    return <SVGInstagram width={size} height={size} />;
+    return <SVGInstagram {...props} />;
   }
   if (name === "Tiktok") {
-    return <SVGTiktok width={size} height={size} />;
+    return <SVGTiktok {...props} />;
   }
   if (name === "Facebook") {
-    return <SVGFacebook width={size} height={size} />;
+    return <SVGFacebook {...props} />;
   }
   if (name === "Email") {
-    return <SVGMail width={size} height={size} fill="#fff" />;
+    return <SVGMail {...props} />;
   }
 
-  return <SVGTwitter width={size} height={size} />;
+  return <SVGTwitter {...props} />;
 }

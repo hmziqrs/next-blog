@@ -2,6 +2,7 @@
 
 import { cx } from "alias";
 import Button from "components/button";
+import SVGChevronArrow from "components/svg/down-arrow";
 import { typography } from "lib/typography";
 import { startCase } from "lodash";
 import { useRouter } from "next/navigation";
@@ -13,6 +14,8 @@ interface DropdownProps {
   selected?: string;
   links?: string[];
   onSelect?: (item: string) => void;
+  className?: string;
+  position?: "left" | "right";
 }
 
 export default function Dropdown({
@@ -21,12 +24,14 @@ export default function Dropdown({
   selected,
   onSelect,
   links,
+  className,
+  position = "left",
 }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
   return (
-    <div className="relative inline-block text-left">
+    <div className={cx("relative select-none", className)}>
       <div>
         <Button
           id="options-menu"
@@ -37,25 +42,14 @@ export default function Dropdown({
           <span className={typography.small}>
             {title}: {selected}
           </span>
-          <svg
-            className="-mr-1 ml-2 h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <SVGChevronArrow />
         </Button>
       </div>
       <div
         className={cx(
-          "origin-top-right absolute right-0 mt-2 w-56 rounded-md z-20",
+          "origin-top-right absolute mt-2 w-56 rounded-md z-20",
           "shadow-lg bg-white ring-1 ring-black ring-opacity-5",
+          position === "left" ? "left-0" : "right-0",
           open ? "block" : "hidden"
         )}
       >

@@ -1,17 +1,34 @@
 import { cx } from "alias";
 
-interface SVGDownArrowProps {
+interface SVGChevronArrowProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
   fill?: string;
+  direction?: "left" | "right" | "top" | "bottom";
 }
 
-export default function SVGDownArrow({ className, fill }: SVGDownArrowProps) {
+// Tailwind rotate classes map
+const rotationMap = {
+  left: "rotate-90",
+  right: "-rotate-90",
+  top: "rotate-180",
+  bottom: "rotate-0",
+};
+
+export default function SVGChevronArrow({
+  className,
+  fill,
+  direction = "bottom",
+  ...props
+}: SVGChevronArrowProps) {
+  const rotation = rotationMap[direction];
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill={fill || "currentColor"}
-      className={cx("h-5 w-5", className)}
+      className={cx("h-5 w-5", rotation, className)}
+      {...props}
     >
       <path
         fillRule="evenodd"

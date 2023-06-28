@@ -29,7 +29,7 @@ export default function PostCard({ post, className }: PostCardProps) {
         style={{ objectFit: "cover" }}
         src={getAsset(file.data.bannerImage)}
         width={1200}
-        height={100}
+        height={330}
       />
       <div className="h-3" />
       <h2 className="line-clamp-2 px-4">{file.data.title}</h2>

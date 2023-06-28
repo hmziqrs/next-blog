@@ -11,14 +11,14 @@ const links = [
 
 export default function Header() {
   return (
-    <div className="bg-zinc-900">
+    <div className="bg-zinc-900 shadow-lg shadow-zinc-600/5 mb-6">
       <Container>
         <div className="py-6 flex flex-row items-center justify-between">
           <Logo />
           <div className="flex flex-row space-x-4">
             {links.map((link) => {
               return (
-                <Link key={link.label} href={link.href} className="">
+                <Link key={link.label} href={link.href}>
                   <span className="underline underline-offset-4">
                     {link.label}
                   </span>

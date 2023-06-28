@@ -1,20 +1,13 @@
-interface SVGInstagramProps {
-  width?: number;
-  height?: number;
-}
+type SVGInstagramProps = React.SVGProps<SVGSVGElement>;
 
-export default function SVGInstagram({
-  width = 38,
-  height = 38,
-}: SVGInstagramProps) {
+export default function SVGInstagram({ ...props }: SVGInstagramProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width={width}
-      height={height}
       viewBox="0 0 48 48"
+      {...props}
     >
       <path
         fill="#304ffe"

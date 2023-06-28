@@ -1,3 +1,7 @@
+import { cx } from "alias";
+import Button from "components/button";
+import SVGChevronArrow from "components/svg/down-arrow";
+import { typography } from "lib/typography";
 import Link from "next/link";
 import { PostWithPrevNext } from "types";
 
@@ -14,63 +18,33 @@ export default function PostPrevNext({ detail }: PostPrevNext) {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <div className="flex flex-col md:flex-row">
-        {prev ? (
-          <Link
-            href={prev.getSlug()}
-            className="text-neutral-300 hover:text-zinc-400 flex flex-row flex-1 items-center stroke-neutral-300 hover:stroke-neutral-400 transition-all"
-          >
-            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M14 7L9 12L14 17"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <div className="w-1" />
-            <p className="flex-1 break-normal line-clamp-1 h-6">
+    <div className="grid md:grid-cols-2 gap-4">
+      {prev ? (
+        <Link href={prev.getSlug()} className="block">
+          <Button size="small" className={cx(typography.body)}>
+            <SVGChevronArrow direction="left" />
+            <div className="w-2" />
+            <p className="flex-1 break-normal line-clamp-1 h-6 text-left">
               {prev.getPostFile().data.title}
             </p>
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
-        {next ? (
-          <Link
-            href={next.getSlug()}
-            className="text-neutral-300 hover:text-zinc-400 flex flex-row-reverse flex-1 items-center stroke-neutral-300 hover:stroke-neutral-400 transition-all"
-          >
-            <svg
-              width="30px"
-              height="30px"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="rotate-180"
-            >
-              <path
-                d="M14 7L9 12L14 17"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <div className="w-1" />
-            <p className="flex-1 break-normal line-clamp-1 h-6 text-right">
+          </Button>
+        </Link>
+      ) : (
+        <div className="flex-1" />
+      )}
+      {next ? (
+        <Link href={next.getSlug()} className="block">
+          <Button size="small" className={cx(typography.body)}>
+            <p className="flex-1 break-normal line-clamp-1 h-6">
               {next.getPostFile().data.title}
             </p>
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
-      </div>
+            <div className="w-2" />
+            <SVGChevronArrow direction="right" />
+          </Button>
+        </Link>
+      ) : (
+        <div className="flex-1" />
+      )}
     </div>
   );
 }
-// return (
-//             {(prev || next) && (
-//       <>
-
-//     )}
-// );

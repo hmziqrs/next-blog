@@ -17,8 +17,8 @@ export default function PostsFilters({ args }: PostsFiltersProps) {
   });
 
   return (
-    <div className="flex flex-row justify-between items-end">
-      <div className="flex flex-row space-x-2">
+    <div className="flex flex-row justify-between items-center">
+      <div className="hidden sm:flex flex-row space-x-2">
         {categoriesToRender.map((category, index) => {
           const isSelected = category.key === args.category.toLowerCase();
           const link = categoryLinks[index];
@@ -32,8 +32,17 @@ export default function PostsFilters({ args }: PostsFiltersProps) {
         })}
       </div>
       <Dropdown
+        title="Category"
+        className="sm:hidden"
+        links={categoryLinks}
+        selected={args.category}
+        items={categoriesToRender.map((category) => category.label)}
+      />
+      <Dropdown
         title="Sort"
+        position="right"
         links={sortLinks}
+        className="shrink-0"
         selected={args.sort}
         items={[...PostsSorts]}
       />

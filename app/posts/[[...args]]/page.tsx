@@ -52,7 +52,7 @@ export default async function Home({ params }: PostsProps) {
     <Container>
       <PostsFilters args={args} />
       <div className="h-8" />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-5">
         {paginated.map((post, index) => {
           return <PostCard key={index.toString()} post={post} />;
         })}

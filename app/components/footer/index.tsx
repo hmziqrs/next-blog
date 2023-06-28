@@ -12,17 +12,8 @@ const webLinks = [
 
 export default function Footer() {
   return (
-    <div className="bg-zinc-900 py-8">
-      <Container className="flex flex-row-reverse justify-between items-center">
-        <div className="flex flex-row space-x-2">
-          {mainSocialLinks.map((link) => {
-            return (
-              <Link href={link.url} target="_blank" key={link.url}>
-                <SocialIcon name={link.name} size={32} />
-              </Link>
-            );
-          })}
-        </div>
+    <div className="bg-zinc-900 py-8 shadow-xl shadow-zinc-50/50">
+      <Container className="flex flex-row justify-between items-center">
         <div className="flex flex-row space-x-4">
           {webLinks.map((link) => (
             <Link
@@ -37,6 +28,15 @@ export default function Footer() {
               <span>{link.label}</span>
             </Link>
           ))}
+        </div>
+        <div className="flex flex-row space-x-2">
+          {mainSocialLinks.map((link) => {
+            return (
+              <Link href={link.url} target="_blank" key={link.url}>
+                <SocialIcon name={link.name} className="lg:h-10 h-7" />
+              </Link>
+            );
+          })}
         </div>
       </Container>
     </div>

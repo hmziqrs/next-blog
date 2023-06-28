@@ -1,20 +1,13 @@
-interface SVGFacebookProps {
-  width?: number;
-  height?: number;
-}
+type SVGFacebookProps = React.SVGProps<SVGSVGElement>;
 
-export default function SVGFacebook({
-  width = 38,
-  height = 38,
-}: SVGFacebookProps) {
+export default function SVGFacebook({ ...props }: SVGFacebookProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width={width}
-      height={height}
       viewBox="0 0 48 48"
+      {...props}
     >
       <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path>
       <path

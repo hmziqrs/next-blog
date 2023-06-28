@@ -43,6 +43,9 @@ export const releases: Release[] = [
         label: "SEO integration for blogs",
       },
       {
+        label: "Post sharing integration",
+      },
+      {
         label: "Sitemap generation script for the blog",
       },
       {

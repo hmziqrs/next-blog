@@ -6,8 +6,8 @@ import { typography } from "lib/typography";
 export default function RoadMapPage() {
   return (
     <Container>
-      <div className="h-2" />
-      <div className=" space-y-4">
+      <div className="h-16" />
+      <div className="space-y-12">
         {releases.map((release) => {
           return (
             <div key={release.version}>
@@ -19,13 +19,12 @@ export default function RoadMapPage() {
               <ul className="list-disc list-inside">
                 {release.features.map((feature) => {
                   return (
-                    <div
-                      key={feature.label}
-                      className="flex flex-row space-x-3"
-                    >
-                      <li>{feature.label}</li>
-                      {feature.done && <SVGCheck />}
-                    </div>
+                    <li key={feature.label}>
+                      {feature.label}
+                      {feature.done && (
+                        <SVGCheck className="inline-block ml-2" />
+                      )}
+                    </li>
                   );
                 })}
               </ul>
@@ -33,6 +32,7 @@ export default function RoadMapPage() {
           );
         })}
       </div>
+      <div className="h-16" />
     </Container>
   );
 }

@@ -15,7 +15,7 @@ export default function ConnectPage() {
             <div key={link.url} className="flex flex-row space-x-4 ">
               <Link href={link.url} target="_blank">
                 <Button size="large" className="min-w-[310px]">
-                  <SocialIcon name={link.name} size={28} />
+                  <SocialIcon name={link.name} className="h-7" />
                   <div className="w-3" />
                   <p>{link.username}</p>
                 </Button>
