@@ -76,7 +76,6 @@ export default function PostArticleContent({
       </article>
       <div className="flex flex-1" />
       <PostPrevNext detail={detail} />
-      <div className="h-6" />
     </div>
   );
 }
