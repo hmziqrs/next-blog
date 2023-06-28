@@ -20,7 +20,7 @@ export default function Button({
 }: ButtonProps) {
   // py-3 px-8
   const sizes = {
-    small: "py-2 px-4",
+    small: "py-2 px-3",
     medium: "py-2 px-4",
     large: "py-3 px-8",
   };

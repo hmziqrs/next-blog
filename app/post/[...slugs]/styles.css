@@ -1,0 +1,19 @@
+#article .text-heading {
+    @apply text-3xl
+}
+
+#article .text-subheading {
+    @apply text-2xl
+}
+
+#article .text-body {
+    @apply text-base
+}
+
+#article .text-small {
+    @apply text-sm
+}
+
+#article .text-tiny {
+    @apply text-xs
+}

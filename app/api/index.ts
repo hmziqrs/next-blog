@@ -53,7 +53,7 @@ export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
 
 function fetchPostFileByPath(path: string): PostFileInterface {
   const file = fs.readFileSync(path, "utf-8");
-  const mattered = matter(file);
+  const mattered = matter(file, { excerpt: true });
   const slug = path.replace(".md", "");
   const name = slug.split("/").pop();
   const readTime = readingTime(mattered.content, {
