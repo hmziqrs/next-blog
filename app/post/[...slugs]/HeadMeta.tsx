@@ -11,33 +11,27 @@ export default function HeadMeta({
   language,
   post,
 }: PostHeadMetaProps) {
-  const url = !language ? post.getSlugUrl() : postFile.getSlugUrl();
-  const {
-    title,
-    description,
-    datePublished,
-    dateModified,
-    bannerImage,
-    bannerImageAlt,
-  } = postFile.data;
-  const keywords = postFile.data.keywords.join(", ");
-
   return (
     <>
       {/* <meta name="last-updated" content="2023-06-28 14:23:28 UTC" /> */}
-      <meta name="user-signed-in" content="false" />
       {/* <meta name="head-cached-at" content="1687962208" /> */}
 
-      <link rel="canonical" href={url} />
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta property="og:url" content={url} />
+      <meta name="user-signed-in" content="false" />
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
+      <meta name="description" content="description" />
+      <meta name="keywords" content="keywords" />
+      <meta name="author" content="author" />
+
+      <meta property="og:url" content="url" />
       <meta property="og:type" content="article" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content="title" />
+      <meta property="og:description" content="description" />
       <meta property="og:site_name" content="TODO" />
-      <meta property="og:image" content="TODO" />
-      <meta property="og:image:alt" content="TODO" />
+      <meta property="og:image" content="bannerImage" />
+      <meta property="og:image:alt" content="bannerImageAlt" />
       <meta property="og:locale" content="en_US" />
 
       <meta property="article:published_time" content="TODO" />
@@ -47,14 +41,23 @@ export default function HeadMeta({
       <meta property="article:tag" content="TODO" />
       <meta property="article:tag" content="TODO" />
 
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@ws" />
+      <meta name="twitter:site:id" content="@ws" />
+      <meta name="twitter:creator" content="@cc" />
+      <meta name="twitter:creator:id" content="@cc" />
+      <meta name="twitter:title" content="title" />
+      <meta name="twitter:description" content="description" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image:src" content="url" />
+      <meta name="twitter:image:alt" content="alt" />
+
+      <meta name="title" content="title" />
+      <meta property="al:web:url" content="url" />
+      <meta name="referrer" content="unsafe-url" />
+
       <title>{postFile.data.title}</title>
-      <meta name="description" content={postFile.data.title} />
-      <meta name="keywords" content="Keyword1, Keyword2" />
-      <link rel="canonical" href="https://www.example.com/example-page" />
-      <meta
-        name="robots"
-        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-      />
+      <link rel="canonical" href="url" />
     </>
   );
 }
