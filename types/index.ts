@@ -1,4 +1,5 @@
 import { ReadTimeResults } from "reading-time";
+import { getEnv } from "utils";
 
 export interface PostsArgs {
   page: number;
@@ -41,13 +42,15 @@ export class Post implements PostInterface {
 
   public getSlug(lang?: string): string {
     if (!lang) return `post/${this.name}`;
-    return this.getPostFile(lang).getSlugUrl();
+    return this.getPostFile(lang).getSlug();
   }
 
-  // public getSlug(lang?: string): string {
-  //   const suffix = lang ? `/${lang}` : "";
-  //   return "post/" + this.name + suffix;
-  // }
+  public getSlugUrl(lang?: string): string {
+    const domain = getEnv().DOMAIN;
+    const slug = this.getSlug(lang);
+    const url = `${domain}/${slug}`;
+    return url;
+  }
 
   getFiles(): PostFileInterface[] {
     return Object.values(this.files);
@@ -77,10 +80,17 @@ export class PostFile implements PostFileInterface {
     this.locale = postFile.locale;
   }
 
-  public getSlugUrl(): string {
+  public getSlug(): string {
     const raw = this.filePath.replace(".md", "").split("/");
     const slug = raw[raw.length - 2];
     const url = `post/${slug}/${this.locale}`;
+    return url;
+  }
+
+  public getSlugUrl(): string {
+    const domain = getEnv().DOMAIN;
+    const slug = this.getSlug();
+    const url = `${domain}/${slug}`;
     return url;
   }
 }
@@ -100,6 +110,7 @@ export interface PostFileDataInterface {
   category: string;
   image: string;
   bannerImage: string;
+  bannerImageAlt: string;
   datePublished: string;
   dateModified: string;
   tags: string[];
@@ -113,6 +124,7 @@ export interface PostWithPrevNext {
 }
 
 export interface Env {
+  DOMAIN: string;
   PER_PAGE: number;
   BLAZE_BUCKET_URL: string;
 }

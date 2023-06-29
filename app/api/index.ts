@@ -15,9 +15,7 @@ export async function fetchPosts(): Promise<Post[]> {
     })
     .map((name) => {
       let translations: string[] = [];
-      const files: {
-        [lang: string]: PostFile;
-      } = {};
+      const files: Post["files"] = {};
       const fileNames = fs.readdirSync(path.join(POSTS_DIR, name));
       translations = fileNames.map((fileName) => fileName.replace(".md", ""));
       translations.forEach((language) => {
@@ -67,6 +65,7 @@ function fetchPostFileByPath(filePath: string): PostFile {
     data: mattered.data,
     content: mattered.content,
   } as PostFileInterface;
+
   const data = new PostFile(raw);
   return data;
 }

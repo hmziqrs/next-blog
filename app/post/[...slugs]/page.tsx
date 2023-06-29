@@ -1,15 +1,14 @@
-import HeadMeta from "./HeadMeta";
-import { PostProps } from "./types";
 import { fetchPostBySlug, fetchPosts } from "api";
 import Container from "components/container";
+
+import PostArticleContent from "./article-content";
+import PostSidebar from "./sidebar";
+import HeadMeta from "./HeadMeta";
 
 export const dynamic = "error";
 export const revalidate = false;
 const dynamicParams = false;
 export { dynamicParams };
-
-import PostSidebar from "./sidebar";
-import PostArticleContent from "./article-content";
 
 import "./styles.css";
 
@@ -30,14 +29,20 @@ export async function generateStaticParams() {
   });
 }
 
-export default async function Page(props: PostProps) {
+interface PostPageProps {
+  params: {
+    slugs: string[];
+  };
+}
+
+export default async function Page(props: PostPageProps) {
   const [slug, language] = props.params.slugs;
   const detail = await fetchPostBySlug(slug);
   const postFile = detail.post.getPostFile(language);
 
   return (
     <>
-      <HeadMeta {...postFile} />
+      <HeadMeta language={language} postFile={postFile} post={detail.post} />
       <Container className="grid md:grid-cols-7 gap-6">
         <PostArticleContent detail={detail} postFile={postFile} />
         <PostSidebar detail={detail} className="md:col-span-2" />
