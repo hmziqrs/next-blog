@@ -1,4 +1,4 @@
-import { Post, PostFile } from "types";
+import { Post, PostFile } from "lib/types";
 
 interface MetaTag {
   propKeyName: string;

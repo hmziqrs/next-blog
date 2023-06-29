@@ -3,7 +3,7 @@ import Button from "components/button";
 import SVGCopy from "components/svg/copy";
 import SVGShare from "components/svg/share";
 import { toast } from "react-hot-toast";
-import { SocialLink } from "types";
+import { SocialLink } from "lib/types";
 
 interface ConnectButtonsProps {
   link: SocialLink;

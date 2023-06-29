@@ -1,4 +1,4 @@
-import { Post, PostsArgs, PostsSorts } from "types";
+import { Post, PostsArgs, PostsSorts } from "lib/types";
 import { categories } from "data/categories";
 import { getEnv, getSafeArgs, getSafePageNo } from "utils";
 

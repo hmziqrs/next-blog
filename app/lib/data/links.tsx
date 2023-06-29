@@ -1,4 +1,4 @@
-import { SocialLink } from "types";
+import { SocialLink } from "lib/types";
 
 export const mainSocialLinks: SocialLink[] = [
   { url: "https://youtube.com", name: "Youtube", username: "@username" },

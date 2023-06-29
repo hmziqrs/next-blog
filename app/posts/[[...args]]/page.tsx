@@ -6,7 +6,7 @@ import PostsFilters from "./posts-filters";
 import PostCard from "components/post-card";
 import Pagination from "./pagination";
 import { categories } from "data/categories";
-import { PostsSorts } from "types";
+import { PostsSorts } from "lib/types";
 import { getArgsArray } from "utils";
 
 export const dynamic = "error";

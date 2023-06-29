@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post, PostFile, PostFileInterface, PostWithPrevNext } from "types";
+import { Post, PostFile, PostFileInterface, PostWithPrevNext } from "lib/types";
 import readingTime from "reading-time";
 
 const POSTS_DIR = "./data-repo/src/content";

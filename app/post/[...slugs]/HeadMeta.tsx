@@ -1,4 +1,4 @@
-import { PostFile, Post } from "types";
+import { PostFile, Post } from "lib/types";
 
 interface PostHeadMetaProps {
   postFile: PostFile;

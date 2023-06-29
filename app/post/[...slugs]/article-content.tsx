@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { typography } from "data/typography";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { PostWithPrevNext, PostFile } from "types";
+import { PostWithPrevNext, PostFile } from "lib/types";
 import { getAsset } from "utils";
 import rehypeRaw from "rehype-raw";
 

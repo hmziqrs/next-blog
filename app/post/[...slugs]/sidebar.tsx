@@ -1,5 +1,5 @@
 import PostCard from "components/post-card";
-import { PostWithPrevNext } from "types";
+import { PostWithPrevNext } from "lib/types";
 import { categories } from "data/categories";
 import { cx } from "alias";
 import { typography } from "data/typography";

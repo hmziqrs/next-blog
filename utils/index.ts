@@ -1,4 +1,4 @@
-import { Env, PostsArgs, PostsArgsIndexes } from "types";
+import { Env, PostsArgs, PostsArgsIndexes } from "lib/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getSafePageNo(max: number, page?: any) {

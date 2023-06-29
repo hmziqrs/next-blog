@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { cx } from "alias";
 import Pagination from "./pagination";
 import { getEnv, getSafePageNo } from "utils";
-import { Post } from "types";
+import { Post } from "lib/types";
 
 interface Props {
   params: {

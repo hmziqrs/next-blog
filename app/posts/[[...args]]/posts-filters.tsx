@@ -4,7 +4,7 @@ import { PostsFiltersProps } from "./types";
 import Link from "next/link";
 import Button from "components/button";
 import { getPostsPath } from "utils";
-import { PostsSorts } from "types";
+import { PostsSorts } from "lib/types";
 import { typography } from "data/typography";
 
 export default function PostsFilters({ args }: PostsFiltersProps) {
