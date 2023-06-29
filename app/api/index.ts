@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post, PostFileInterface, PostWithPrevNext } from "types";
+import { Post, PostFile, PostFileInterface, PostWithPrevNext } from "types";
 import readingTime from "reading-time";
 
 const POSTS_DIR = "./data-repo/src/content";
@@ -16,7 +16,7 @@ export async function fetchPosts(): Promise<Post[]> {
     .map((name) => {
       let translations: string[] = [];
       const files: {
-        [lang: string]: PostFileInterface;
+        [lang: string]: PostFile;
       } = {};
       const fileNames = fs.readdirSync(path.join(POSTS_DIR, name));
       translations = fileNames.map((fileName) => fileName.replace(".md", ""));
@@ -51,21 +51,22 @@ export async function fetchPostBySlug(slug: string): Promise<PostWithPrevNext> {
   return { prev, next, post };
 }
 
-function fetchPostFileByPath(path: string): PostFileInterface {
-  const file = fs.readFileSync(path, "utf-8");
+function fetchPostFileByPath(filePath: string): PostFile {
+  const file = fs.readFileSync(filePath, "utf-8");
   const mattered = matter(file, { excerpt: true });
-  const slug = path.replace(".md", "");
-  const name = slug.split("/").pop();
+  const slug = filePath.replace(".md", "");
+  const locale = slug.split("/").pop();
   const readTime = readingTime(mattered.content, {
     wordsPerMinute: 80,
   });
-  const data = {
-    path,
-    name,
-    slug,
+
+  const raw = {
+    locale,
     readTime,
+    filePath,
     data: mattered.data,
     content: mattered.content,
   } as PostFileInterface;
+  const data = new PostFile(raw);
   return data;
 }
