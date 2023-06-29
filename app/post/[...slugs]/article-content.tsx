@@ -1,6 +1,6 @@
 import { cx } from "alias";
 import dayjs from "dayjs";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { PostWithPrevNext, PostFile } from "types";

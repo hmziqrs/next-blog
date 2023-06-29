@@ -5,7 +5,7 @@ import Container from "components/container";
 import PostsFilters from "./posts-filters";
 import PostCard from "components/post-card";
 import Pagination from "./pagination";
-import { categories } from "lib/categories";
+import { categories } from "data/categories";
 import { PostsSorts } from "types";
 import { getArgsArray } from "utils";
 

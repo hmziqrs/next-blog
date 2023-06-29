@@ -1,7 +1,7 @@
 import { cx } from "alias";
 import Button from "components/button";
 import SVGChevronArrow from "components/svg/down-arrow";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Link from "next/link";
 import { PostWithPrevNext } from "types";
 

@@ -1,7 +1,7 @@
 import Button from "components/button";
 import Container from "components/container";
 import SocialIcon from "components/socialIcon";
-import { emailLinks, mainSocialLinks } from "lib/links";
+import { emailLinks, mainSocialLinks } from "data/links";
 import Link from "next/link";
 import ConnectButtons from "./buttons";
 

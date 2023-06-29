@@ -1,4 +1,4 @@
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Link from "next/link";
 
 export default function Logo() {

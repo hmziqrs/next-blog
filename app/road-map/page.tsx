@@ -1,7 +1,7 @@
 import Container from "components/container";
 import { releases } from "./data";
 import SVGCheck from "components/svg/check";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 
 export default function RoadMapPage() {
   return (

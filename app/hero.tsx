@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "components/container";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Typewriter from "typewriter-effect";
 
 const DELAY = {
