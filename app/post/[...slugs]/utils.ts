@@ -24,8 +24,8 @@ export function metaDataGenerator(
     bannerImageAlt,
     category,
   } = postFile.data;
-  const keywords = postFile.data.keywords.join(", ");
-  const tags = postFile.data.tags.join(", ");
+  const keywords = postFile.data.keywords?.join(", ");
+  const tags = postFile.data.tags?.join(", ");
 
   const postAuthor = authors.find((a) => a.username === author);
 

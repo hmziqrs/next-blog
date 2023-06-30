@@ -27,7 +27,9 @@ export default function HeadMeta({
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       />
       {metaMap.map((meta) => {
-        const content = data[meta.propContentKey] ?? "INVALID";
+        const content = data[meta.propContentKey];
+        // if (!content) return null;
+
         const object = { [meta.propKeyName]: meta.propKeyValue, content };
 
         return <meta key={meta.propKeyValue} {...object} />;
