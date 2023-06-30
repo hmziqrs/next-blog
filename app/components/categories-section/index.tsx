@@ -1,9 +1,9 @@
 import Container from "components/container";
-import { categories } from "lib/categories";
+import { categories } from "data/categories";
 import { cx } from "alias";
 import { getAsset, getPostsPath } from "utils";
 import Link from "next/link";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 
 export default function CategoriesSection() {
   return (

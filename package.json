@@ -20,6 +20,7 @@
     "classnames": "^2.3.2",
     "dayjs": "^1.11.8",
     "gray-matter": "^4.0.3",
+    "html-entities": "^2.4.0",
     "lodash": "^4.17.21",
     "next": "13.4.4",
     "query-string": "^8.1.0",

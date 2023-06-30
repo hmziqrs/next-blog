@@ -1,6 +1,6 @@
 import { cx } from "alias";
 import { sortBy } from "lodash";
-import { Post } from "types";
+import { Post } from "lib/types";
 import { getAsset } from "utils";
 import Image from "next/image";
 import Link from "next/link";

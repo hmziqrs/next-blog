@@ -1,8 +1,8 @@
 import Container from "components/container";
 import PostCard from "components/post-card";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Link from "next/link";
-import { Post } from "types";
+import { Post } from "lib/types";
 
 interface PostsSectionProps {
   posts: Post[];

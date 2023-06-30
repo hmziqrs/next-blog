@@ -1,4 +1,4 @@
-import { PostsArgs } from "types";
+import { PostsArgs } from "lib/types";
 
 interface PostsArgsAndIndexes {
   args: PostsArgs;

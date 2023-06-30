@@ -1,9 +1,9 @@
 import { cx } from "alias";
 import dayjs from "dayjs";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { PostWithPrevNext, PostFileInterface } from "types";
+import { PostWithPrevNext, PostFile } from "lib/types";
 import { getAsset } from "utils";
 import rehypeRaw from "rehype-raw";
 
@@ -12,7 +12,7 @@ import Button from "components/button";
 
 interface PostArticleContentProps {
   detail: PostWithPrevNext;
-  postFile: PostFileInterface;
+  postFile: PostFile;
 }
 
 export default function PostArticleContent({

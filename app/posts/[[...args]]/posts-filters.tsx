@@ -1,11 +1,11 @@
-import { categories } from "lib/categories";
+import { categories } from "data/categories";
 import Dropdown from "components/dropdown";
 import { PostsFiltersProps } from "./types";
 import Link from "next/link";
 import Button from "components/button";
 import { getPostsPath } from "utils";
-import { PostsSorts } from "types";
-import { typography } from "lib/typography";
+import { PostsSorts } from "lib/types";
+import { typography } from "data/typography";
 
 export default function PostsFilters({ args }: PostsFiltersProps) {
   const categoriesToRender = [{ key: "all", label: "All" }, ...categories];

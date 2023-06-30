@@ -1,8 +1,8 @@
 import PostCard from "components/post-card";
-import { PostWithPrevNext } from "types";
-import { categories } from "lib/categories";
+import { PostWithPrevNext } from "lib/types";
+import { categories } from "data/categories";
 import { cx } from "alias";
-import { typography } from "lib/typography";
+import { typography } from "data/typography";
 
 interface PostSidebarProps {
   detail: PostWithPrevNext;

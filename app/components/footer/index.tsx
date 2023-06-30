@@ -1,8 +1,8 @@
 import { cx } from "alias";
 import Container from "components/container";
 import SocialIcon from "components/socialIcon";
-import { mainSocialLinks } from "lib/links";
-import { typography } from "lib/typography";
+import { mainSocialLinks } from "data/links";
+import { typography } from "data/typography";
 import Link from "next/link";
 
 const webLinks = [

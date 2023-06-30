@@ -1,5 +1,5 @@
-import { Post, PostsArgs, PostsSorts } from "types";
-import { categories } from "lib/categories";
+import { Post, PostsArgs, PostsSorts } from "lib/types";
+import { categories } from "data/categories";
 import { getEnv, getSafeArgs, getSafePageNo } from "utils";
 
 export function paginatePosts(posts: Post[], rawCurrentPage: number) {
