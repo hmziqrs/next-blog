@@ -123,6 +123,13 @@ export interface PostWithPrevNext {
   post: Post;
 }
 
+export interface PostAuthor {
+  name: string;
+  username: string;
+  twitterUsername: string;
+  twitterUserId: string;
+}
+
 export interface Env {
   DOMAIN: string;
   PER_PAGE: number;

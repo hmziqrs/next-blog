@@ -1,5 +1,7 @@
 import { PostFile, Post } from "lib/types";
 
+import * as utils from "./utils";
+
 interface PostHeadMetaProps {
   postFile: PostFile;
   post: Post;
@@ -11,6 +13,9 @@ export default function HeadMeta({
   language,
   post,
 }: PostHeadMetaProps) {
+  const data = utils.metaDataGenerator(post, postFile, language);
+  const metaMap = utils.metaKeysMap();
+
   return (
     <>
       {/* <meta name="last-updated" content="2023-06-28 14:23:28 UTC" /> */}
@@ -21,43 +26,14 @@ export default function HeadMeta({
         name="robots"
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       />
-      <meta name="description" content="description" />
-      <meta name="keywords" content="keywords" />
-      <meta name="author" content="author" />
+      {metaMap.map((meta) => {
+        const content = data[meta.propContentKey] ?? "INVALID";
+        const object = { [meta.propKeyName]: meta.propKeyValue, content };
 
-      <meta property="og:url" content="url" />
-      <meta property="og:type" content="article" />
-      <meta property="og:title" content="title" />
-      <meta property="og:description" content="description" />
-      <meta property="og:site_name" content="TODO" />
-      <meta property="og:image" content="bannerImage" />
-      <meta property="og:image:alt" content="bannerImageAlt" />
-      <meta property="og:locale" content="en_US" />
-
-      <meta property="article:published_time" content="TODO" />
-      <meta property="article:modified_time" content="TODO" />
-      <meta property="article:author" content="TODO" />
-      <meta property="article:section" content="TODO" />
-      <meta property="article:tag" content="TODO" />
-      <meta property="article:tag" content="TODO" />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@ws" />
-      <meta name="twitter:site:id" content="@ws" />
-      <meta name="twitter:creator" content="@cc" />
-      <meta name="twitter:creator:id" content="@cc" />
-      <meta name="twitter:title" content="title" />
-      <meta name="twitter:description" content="description" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image:src" content="url" />
-      <meta name="twitter:image:alt" content="alt" />
-
-      <meta name="title" content="title" />
-      <meta property="al:web:url" content="url" />
-      <meta name="referrer" content="unsafe-url" />
-
+        return <meta key={meta.propKeyValue} {...object} />;
+      })}
       <title>{postFile.data.title}</title>
-      <link rel="canonical" href="url" />
+      <link rel="canonical" href={data.url} />
     </>
   );
 }
