@@ -22,8 +22,10 @@ export function metaDataGenerator(
     dateModified,
     bannerImage,
     bannerImageAlt,
+    category,
   } = postFile.data;
   const keywords = postFile.data.keywords.join(", ");
+  const tags = postFile.data.tags.join(", ");
 
   const postAuthor = authors.find((a) => a.username === author);
 
@@ -37,6 +39,8 @@ export function metaDataGenerator(
     bannerImageAlt,
     keywords,
     url,
+    tags,
+    category,
     type: "article",
     siteName: "Next blogs",
     webTwitterUsername: postAuthor?.twitterUsername ?? "TWITTER_AUTHOR_TODO",
@@ -59,8 +63,18 @@ export function metaKeysMap() {
     },
     {
       propKeyName: "name",
+      propKeyValue: "category",
+      propContentKey: "category",
+    },
+    {
+      propKeyName: "name",
       propKeyValue: "keywords",
       propContentKey: "keywords",
+    },
+    {
+      propKeyName: "name",
+      propKeyValue: "tags",
+      propContentKey: "tags",
     },
     {
       propKeyName: "name",
