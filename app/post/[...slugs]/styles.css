@@ -1,8 +1,10 @@
-#article .text-heading {
+#article .text-heading,
+#article h1 {
     @apply text-3xl
 }
 
-#article .text-subheading {
+#article .text-subheading,
+#article h2 {
     @apply text-2xl
 }
 
@@ -16,4 +18,7 @@
 
 #article .text-tiny {
     @apply text-xs
+}
+#article blockquote {
+    @apply p-4 my-4 border-l-4 border-gray-500 bg-gray-800
 }

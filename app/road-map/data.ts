@@ -35,12 +35,15 @@ export const releases: Release[] = [
       },
       {
         label: "Creating a consistent typography system",
+        done: true,
       },
       {
         label: "Responsive design for mobile and web",
+        done: true,
       },
       {
         label: "SEO integration for blogs",
+        done: true,
       },
       {
         label: "Post sharing integration",
@@ -52,10 +55,25 @@ export const releases: Release[] = [
         label: "Sort and filter integration in API",
       },
       {
+        label: "A basic E2E test integration",
+      },
+      {
+        label: "Integrate a hosting service",
+      },
+      {
         label: "Firebase analytics integration",
       },
       {
-        label: "A basic E2E test integration",
+        label: "Connect the domain name",
+      },
+      {
+        label: "[Experiment] Cloudflare caching for the assets on black blaze",
+      },
+      {
+        label: "SEO with webmaster and other tools",
+      },
+      {
+        label: "Integrate a CI/CD pipeline",
       },
     ],
   },
