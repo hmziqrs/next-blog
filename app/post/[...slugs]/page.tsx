@@ -44,7 +44,11 @@ export default async function Page(props: PostPageProps) {
     <>
       <HeadMeta language={language} postFile={postFile} post={detail.post} />
       <Container className="grid md:grid-cols-7 gap-6">
-        <PostArticleContent detail={detail} postFile={postFile} />
+        <PostArticleContent
+          detail={detail}
+          postFile={postFile}
+          language={language}
+        />
         <PostSidebar detail={detail} className="md:col-span-2" />
       </Container>
       <div className="h-12" />

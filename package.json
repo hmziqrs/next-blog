@@ -23,6 +23,7 @@
     "html-entities": "^2.4.0",
     "lodash": "^4.17.21",
     "next": "13.4.4",
+    "next-share": "^0.22.2",
     "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

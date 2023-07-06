@@ -9,13 +9,16 @@ import rehypeRaw from "rehype-raw";
 
 import PostPrevNext from "./prev-next";
 import Button from "components/button";
+import PostShare from "./share";
 
 interface PostArticleContentProps {
   detail: PostWithPrevNext;
   postFile: PostFile;
+  language?: string;
 }
 
 export default function PostArticleContent({
+  language,
   detail,
   postFile,
 }: PostArticleContentProps) {
@@ -68,6 +71,9 @@ export default function PostArticleContent({
         })}
       </div>
       <div className="h-4" />
+      <PostShare language={language} />
+      <div className="h-4" />
+
       <article id="article">
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {postFile.content}
